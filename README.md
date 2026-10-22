@@ -14,6 +14,13 @@ Hoje ele hospeda as páginas públicas que a Meta exige para o app **Gabrielbeit
 
 O arquivo `.nojekyll` faz o GitHub Pages servir os HTML como estão, sem processar nada.
 
+## Onde ver o link do site no GitHub
+
+- **Settings → Pages:** no topo aparece "Your site is live at https://gabrielbeitum.github.io/", com o botão **Visit site**. No celular, abra o GitHub no navegador com a opção "Site para computador" para ver a aba **Settings**.
+- **Página inicial do repositório:** na coluna da direita, em **Deployments**, clique em **github-pages** para ver o link e o histórico de publicações.
+- **Este README:** a tabela acima tem os três links.
+- **Atalho opcional:** na coluna da direita, clique na engrenagem ⚙ ao lado de **About** e marque **Use your GitHub Pages website**. O link passa a aparecer no topo do repositório.
+
 ## Como atualizar
 
 1. Os textos são mantidos no repositório privado da empresa: a Seção 1 escreve e a Seção 3 gera os HTML.
