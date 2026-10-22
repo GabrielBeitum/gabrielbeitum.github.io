@@ -30,4 +30,4 @@ Os endereços não mudam. Não edite direto aqui os HTML da política, da exclus
 
 ## Responsável
 
-69.541.013 GABRIEL MARCELLO BEITUM (MEI), CNPJ 69.541.013/0001-74, Quatá/SP · gabrielbeitum944@gmail.com
+69.541.013 GABRIEL MARCELLO BEITUM (MEI), CNPJ 69.541.013/0001-74, Quatá/SP · gabrielbeitum944.work@gmail.com
