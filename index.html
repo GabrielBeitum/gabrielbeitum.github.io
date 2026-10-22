@@ -3,35 +3,240 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Páginas do app · Gabrielbeitum.ai</title>
+<title>Gabriel Marcello Beitum · gabrielbeitum.ai</title>
+<meta name="description" content="Automações com IA para negócios: agentes que atendem pelo WhatsApp, fluxos no n8n e sites. Documentos do app Gabrielbeitum.ai.">
+<meta property="og:title" content="gabrielbeitum.ai">
+<meta property="og:description" content="Automações com IA para negócios: agentes que atendem pelo WhatsApp, fluxos no n8n e sites.">
+<meta property="og:image" content="https://gabrielbeitum.github.io/img/icone.png">
+<meta property="og:url" content="https://gabrielbeitum.github.io/">
+<meta name="theme-color" content="#14161F">
+<link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
+<link rel="apple-touch-icon" href="img/icone-180.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
 <style>
-  :root { --fundo: #f6f7f9; --cartao: #ffffff; --texto: #1c2230; --suave: #5a6375; --linha: #dde1e8; --link: #1f5fd1; }
-  @media (prefers-color-scheme: dark) { :root { --fundo: #11151c; --cartao: #19202b; --texto: #e6e9ef; --suave: #a2aab8; --linha: #2c3442; --link: #6ea2ff; } }
+  :root {
+    --tinta: #14161F;
+    --grafite: #1E2230;
+    --papel: #F4F6FA;
+    --eletrico: #3D57F0;
+    --marca-texto: #FFD84D;
+    --azul-claro: #8FA2FF;
+    --cinza-claro: #A3A8B8;
+    --linha: #2C3244;
+  }
   * { box-sizing: border-box; }
-  body { margin: 0; background: var(--fundo); color: var(--texto); font: 16px/1.6 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  main { max-width: 760px; margin: 0 auto; padding: 32px 16px 48px; }
-  article { background: var(--cartao); border: 1px solid var(--linha); border-radius: 12px; padding: 28px 24px; }
-  h1 { font-size: 1.6rem; line-height: 1.25; margin: 0 0 8px; }
-  h2 { font-size: 1.15rem; margin: 28px 0 8px; }
-  p, li { overflow-wrap: anywhere; }
-  a { color: var(--link); }
-  table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: .95rem; }
-  th, td { border: 1px solid var(--linha); padding: 8px 10px; text-align: left; vertical-align: top; }
-  .tabela { overflow-x: auto; }
-  nav { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 16px; font-size: .95rem; }
-  footer { color: var(--suave); font-size: .85rem; margin-top: 16px; text-align: center; }
-  .pendente { background: #fff3cd; color: #664d03; padding: 0 4px; border-radius: 4px; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    color: var(--papel);
+    background:
+      radial-gradient(56rem 36rem at 100% 0, rgba(61, 87, 240, .26), rgba(61, 87, 240, 0) 70%) no-repeat,
+      var(--tinta);
+    font: 400 1.0625rem/1.65 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  a { color: inherit; }
+  a:focus-visible {
+    outline: 3px solid var(--marca-texto);
+    outline-offset: 3px;
+  }
+  .pagina { max-width: 64rem; margin: 0 auto; padding: 0 1.25rem; }
+
+  /* Topo: o nome em três linhas, como o ícone do app */
+  .topo { padding: 4.5rem 0 3.5rem; display: grid; gap: 2rem; }
+  .assinatura {
+    margin: 0;
+    font: 700 clamp(3.4rem, 15vw, 8.5rem)/.92 Poppins, sans-serif;
+    letter-spacing: -.035em;
+  }
+  .assinatura span { display: block; }
+  .assinatura .ai {
+    font-family: "Space Mono", monospace;
+    font-size: .78em;
+    letter-spacing: -.02em;
+    color: var(--marca-texto);
+    margin: .12em 0 0 -.08em;
+  }
+  .resumo {
+    max-width: 34rem;
+    margin: 0;
+    font-size: clamp(1.15rem, 2.6vw, 1.4rem);
+    line-height: 1.5;
+  }
+  .acoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .apresentacao { align-self: end; }
+  .botao {
+    display: inline-flex; align-items: center; gap: .55rem;
+    padding: .85rem 1.3rem;
+    border-radius: 999px;
+    font-weight: 600; text-decoration: none;
+    border: 2px solid var(--eletrico);
+  }
+  .botao.principal { background: var(--eletrico); color: var(--papel); }
+  .botao.principal:hover { background: #3249d6; border-color: #3249d6; }
+  .botao.secundario { color: var(--papel); border-color: var(--linha); }
+  .botao.secundario:hover { border-color: var(--azul-claro); }
+  .botao svg { width: 1.15rem; height: 1.15rem; flex: none; }
+
+  /* Documentos do app: os únicos blocos claros da página */
+  .documentos {
+    background: var(--grafite);
+    border: 1px solid var(--linha);
+    border-radius: 20px;
+    padding: 2rem 1.25rem;
+    margin: 0 0 4.5rem;
+  }
+  .documentos h2 { margin: 0 0 .5rem; }
+  .documentos > p { margin: 0 0 1.5rem; max-width: 40rem; color: var(--cinza-claro); }
+  .docs { display: grid; gap: 1rem; grid-template-columns: 1fr; }
+  .doc {
+    display: block;
+    padding: 1.5rem 1.4rem 1.35rem;
+    background: var(--papel);
+    color: var(--tinta);
+    border-radius: 14px;
+    text-decoration: none;
+    box-shadow: inset 0 -6px 0 var(--marca-texto);
+    transition: transform .15s ease, box-shadow .15s ease;
+  }
+  .doc:hover { transform: translateY(-2px); box-shadow: inset 0 -10px 0 var(--marca-texto); }
+  .doc h3 {
+    margin: 0 0 .35rem;
+    font: 700 clamp(1.35rem, 3.4vw, 1.7rem)/1.2 Poppins, sans-serif;
+    letter-spacing: -.01em;
+  }
+  .doc p { margin: 0 0 .9rem; color: #3A4050; }
+  .doc .url {
+    display: block;
+    font: 700 .82rem/1.4 "Space Mono", monospace;
+    color: var(--eletrico);
+    overflow-wrap: break-word;
+  }
+
+  /* Seções de texto */
+  h2 {
+    font: 700 clamp(1.6rem, 4vw, 2.2rem)/1.15 Poppins, sans-serif;
+    letter-spacing: -.02em;
+    margin: 0 0 1.1rem;
+  }
+  .sobre { display: grid; gap: 2.5rem; grid-template-columns: 1fr; margin: 0 0 4rem; }
+  .sobre p { max-width: 38rem; margin: 0 0 1rem; }
+  .apoio { color: var(--cinza-claro); }
+  .servicos { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linha); }
+  .servicos li { padding: 1rem 0; border-bottom: 1px solid var(--linha); }
+  .servicos b { display: block; font-weight: 600; color: var(--azul-claro); margin-bottom: .15rem; }
+  .servicos span { color: var(--cinza-claro); }
+
+  .contato { border-top: 1px solid var(--linha); padding: 3rem 0 1rem; }
+  .contato p { margin: 0; }
+  .contato .acoes { margin-top: 1.25rem; }
+  .contato .email { margin-top: 1.25rem; color: var(--cinza-claro); }
+  .contato .email a { color: var(--papel); }
+
+  footer { padding: 2rem 0 3rem; color: var(--cinza-claro); font-size: .875rem; }
+  footer p { margin: .25rem 0; }
+
+  @media (min-width: 46rem) {
+    .topo { padding: 6.5rem 0 4.5rem; grid-template-columns: auto minmax(0, 24rem); justify-content: space-between; gap: 3rem; }
+    .documentos { padding: 2.5rem; }
+    .sobre { grid-template-columns: 5fr 6fr; gap: 4rem; }
+  }
+
+  @media (min-width: 60rem) {
+    .docs { grid-template-columns: repeat(3, 1fr); }
+  }
+
+  /* Um único movimento: o ".ai" é grifado com o marca-texto ao abrir a página */
+  @media (prefers-reduced-motion: no-preference) {
+    .assinatura .ai { animation: grifo .9s cubic-bezier(.2, .7, .2, 1) .25s both; }
+    @keyframes grifo {
+      from { clip-path: inset(0 100% 0 0); }
+      to { clip-path: inset(0 0 0 0); }
+    }
+  }
 </style>
 </head>
 <body>
-<main>
-<nav><a href="privacidade.html">Política de Privacidade</a><a href="exclusao-de-dados.html">Exclusão de dados</a></nav>
-<article>
-<h1>Gabrielbeitum.ai</h1>
-<p>Páginas públicas do app Gabrielbeitum.ai, usado só no perfil @gabrielbeitum.ai do Instagram.</p>
-<ul><li><a href="privacidade.html">Política de Privacidade</a></li><li><a href="exclusao-de-dados.html">Instruções de exclusão de dados</a></li></ul>
-</article>
-<footer>Gabrielbeitum.ai · @gabrielbeitum.ai no Instagram</footer>
-</main>
+<div class="pagina">
+
+  <header class="topo">
+    <h1 class="assinatura" aria-label="gabrielbeitum.ai">
+      <span>gabriel</span>
+      <span>beitum</span>
+      <span class="ai">.ai</span>
+    </h1>
+    <div class="apresentacao">
+    <p class="resumo">Automações com IA para negócios: agentes que atendem, agendam e respondem pelo WhatsApp, fluxos no n8n e sites.</p>
+    <div class="acoes">
+      <a class="botao principal" href="https://wa.me/5518996786028">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
+        Falar no WhatsApp
+      </a>
+      <a class="botao secundario" href="https://www.instagram.com/gabrielbeitum.ai/">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @gabrielbeitum.ai
+      </a>
+    </div>
+    </div>
+  </header>
+
+  <section class="documentos" aria-labelledby="titulo-docs">
+    <h2 id="titulo-docs">Documentos do app Gabrielbeitum.ai</h2>
+    <p>O app Gabrielbeitum.ai responde os comentários e as mensagens do @gabrielbeitum.ai no Instagram. Aqui você vê como ele trata os seus dados, como pedir para apagá-los e as regras de uso.</p>
+    <div class="docs">
+      <a class="doc" href="privacidade.html">
+        <h3>Política de Privacidade</h3>
+        <p>Quais dados o app usa, para quê, com quem compartilha e por quanto tempo guarda.</p>
+        <span class="url">gabrielbeitum.github.io/<wbr>privacidade.html</span>
+      </a>
+      <a class="doc" href="exclusao-de-dados.html">
+        <h3>Exclusão de dados</h3>
+        <p>Como pedir para apagar os seus dados, por DM ou por e-mail. Atendemos em até 15 dias.</p>
+        <span class="url">gabrielbeitum.github.io/<wbr>exclusao-de-dados.html</span>
+      </a>
+      <a class="doc" href="termos-de-uso.html">
+        <h3>Termos de Uso</h3>
+        <p>As regras para comentar e mandar mensagens ao perfil e o que as respostas automáticas valem.</p>
+        <span class="url">gabrielbeitum.github.io/<wbr>termos-de-uso.html</span>
+      </a>
+    </div>
+  </section>
+
+  <section class="sobre">
+    <div>
+      <h2>Quem sou eu</h2>
+      <p>Sou Gabriel Marcello Beitum, de Quatá (SP). Crio automações para negócios: atendentes virtuais com IA, fluxos que ligam as ferramentas que a equipe já usa e sites quando o projeto pede.</p>
+      <p>No Instagram @gabrielbeitum.ai, conto as novidades do Claude e de outras IAs, sem enrolação, e mostro como essas ferramentas funcionam no dia a dia de um negócio.</p>
+      <p class="apoio">Atendo pequenos negócios locais, como clínicas, lojas, restaurantes, salões e imobiliárias, e equipes comerciais e de atendimento de empresas médias.</p>
+    </div>
+    <div>
+      <h2>O que eu faço</h2>
+      <ul class="servicos">
+        <li><b>Agentes de IA</b><span>Atendentes virtuais e assistentes internos com Claude e GPT, ligados aos canais e sistemas do negócio.</span></li>
+        <li><b>Automações no n8n</b><span>Fluxos que integram ferramentas, planilhas e sistemas e tiram o trabalho repetitivo da equipe.</span></li>
+        <li><b>Atendimento via WhatsApp</b><span>Com a API oficial da Meta ou a Evolution API, conforme o tamanho do projeto.</span></li>
+        <li><b>Hospedagem e manutenção</b><span>O n8n no meu servidor, com mensalidade, ou configurado no servidor do cliente.</span></li>
+        <li><b>Sites</b><span>Landing pages e sites institucionais.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="contato" aria-labelledby="titulo-contato">
+    <h2 id="titulo-contato">Vamos conversar sobre o seu negócio?</h2>
+    <p class="apoio">Conte o que toma tempo da sua equipe hoje, e eu digo o que dá para automatizar.</p>
+    <div class="acoes">
+      <a class="botao principal" href="https://wa.me/5518996786028">Chamar no WhatsApp</a>
+      <a class="botao secundario" href="https://linktr.ee/GabrielBeitum">Todos os links</a>
+    </div>
+    <p class="email">Ou escreva para <a href="mailto:gabrielbeitum944@gmail.com">gabrielbeitum944@gmail.com</a></p>
+  </section>
+
+  <footer>
+    <p>69.541.013 GABRIEL MARCELLO BEITUM (MEI), CNPJ 69.541.013/0001-74, Quatá/SP</p>
+    <p><a href="privacidade.html">Política de Privacidade</a>, <a href="exclusao-de-dados.html">Exclusão de dados</a> e <a href="termos-de-uso.html">Termos de Uso</a></p>
+  </footer>
+
+</div>
 </body>
 </html>
