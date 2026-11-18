@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gabriel Marcello Beitum · gabrielbeitum.ai</title>
-<meta name="description" content="Automações com IA para negócios: agentes que atendem pelo WhatsApp, fluxos no n8n e sites. Documentos do app Gabrielbeitum.ai.">
+<meta name="description" content="Automações com IA para negócios: atendentes virtuais no WhatsApp, fluxos no n8n e sites. Veja como cada automação funciona, passo a passo.">
 <meta property="og:title" content="gabrielbeitum.ai">
-<meta property="og:description" content="Automações com IA para negócios: agentes que atendem pelo WhatsApp, fluxos no n8n e sites.">
+<meta property="og:description" content="Automações com IA para negócios: veja como cada automação funciona, passo a passo.">
 <meta property="og:image" content="https://gabrielbeitum.github.io/img/icone.png">
 <meta property="og:url" content="https://gabrielbeitum.github.io/">
 <meta name="theme-color" content="#14161F">
@@ -25,9 +25,11 @@
     --azul-claro: #8FA2FF;
     --cinza-claro: #A3A8B8;
     --linha: #2C3244;
+    --zap: #1F2C34;
+    --zap-fundo: #0E1519;
   }
   * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
   body {
     margin: 0;
     color: var(--papel);
@@ -37,13 +39,13 @@
     font: 400 1.0625rem/1.65 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
   }
   a { color: inherit; }
-  a:focus-visible {
+  a:focus-visible, .cards:focus-visible {
     outline: 3px solid var(--marca-texto);
     outline-offset: 3px;
   }
   .pagina { max-width: 64rem; margin: 0 auto; padding: 0 1.25rem; }
 
-  /* Topo: o nome em três linhas, como o ícone do app */
+  /* Topo */
   .topo { padding: 4.5rem 0 3.5rem; display: grid; gap: 2rem; }
   .assinatura {
     margin: 0;
@@ -58,14 +60,9 @@
     color: var(--marca-texto);
     margin: .12em 0 0 -.08em;
   }
-  .resumo {
-    max-width: 34rem;
-    margin: 0;
-    font-size: clamp(1.15rem, 2.6vw, 1.4rem);
-    line-height: 1.5;
-  }
-  .acoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
+  .resumo { max-width: 34rem; margin: 0; font-size: clamp(1.15rem, 2.6vw, 1.4rem); line-height: 1.5; }
   .apresentacao { align-self: end; }
+  .acoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
   .botao {
     display: inline-flex; align-items: center; gap: .55rem;
     padding: .85rem 1.3rem;
@@ -79,82 +76,160 @@
   .botao.secundario:hover { border-color: var(--azul-claro); }
   .botao svg { width: 1.15rem; height: 1.15rem; flex: none; }
 
-  /* Documentos do app: os únicos blocos claros da página */
-  .documentos {
-    background: var(--grafite);
-    border: 1px solid var(--linha);
-    border-radius: 20px;
-    padding: 2rem 1.25rem;
-    margin: 0 0 4.5rem;
-  }
-  .documentos h2 { margin: 0 0 .5rem; }
-  .documentos > p { margin: 0 0 1.5rem; max-width: 40rem; color: var(--cinza-claro); }
-  .docs { display: grid; gap: 1rem; grid-template-columns: 1fr; }
-  .doc {
-    display: block;
-    padding: 1.5rem 1.4rem 1.35rem;
-    background: var(--papel);
-    color: var(--tinta);
-    border-radius: 14px;
-    text-decoration: none;
-    box-shadow: inset 0 -6px 0 var(--marca-texto);
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .doc:hover { transform: translateY(-2px); box-shadow: inset 0 -10px 0 var(--marca-texto); }
-  .doc h3 {
-    margin: 0 0 .35rem;
-    font: 700 clamp(1.35rem, 3.4vw, 1.7rem)/1.2 Poppins, sans-serif;
-    letter-spacing: -.01em;
-  }
-  .doc p { margin: 0 0 .9rem; color: #3A4050; }
-  .doc .url {
-    display: block;
-    font: 700 .82rem/1.4 "Space Mono", monospace;
-    color: var(--eletrico);
-    overflow-wrap: break-word;
-  }
-
-  /* Seções de texto */
   h2 {
     font: 700 clamp(1.6rem, 4vw, 2.2rem)/1.15 Poppins, sans-serif;
     letter-spacing: -.02em;
-    margin: 0 0 1.1rem;
+    margin: 0 0 1rem;
   }
-  .sobre { display: grid; gap: 2.5rem; grid-template-columns: 1fr; margin: 0 0 4rem; }
-  .sobre p { max-width: 38rem; margin: 0 0 1rem; }
+  h3 { font: 700 clamp(1.3rem, 3.2vw, 1.7rem)/1.2 Poppins, sans-serif; letter-spacing: -.01em; margin: 0 0 .6rem; }
+  .intro { max-width: 40rem; margin: 0 0 2rem; color: var(--cinza-claro); }
   .apoio { color: var(--cinza-claro); }
+  section { margin: 0 0 5rem; }
+
+  /* O que eu faço */
   .servicos { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linha); }
   .servicos li { padding: 1rem 0; border-bottom: 1px solid var(--linha); }
   .servicos b { display: block; font-weight: 600; color: var(--azul-claro); margin-bottom: .15rem; }
   .servicos span { color: var(--cinza-claro); }
 
-  .contato { border-top: 1px solid var(--linha); padding: 3rem 0 1rem; }
+  /* Automações por público */
+  .atalhos { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 2.5rem; }
+  .atalhos a {
+    padding: .45rem .95rem; border: 1px solid var(--linha); border-radius: 999px;
+    text-decoration: none; font-size: .95rem; color: var(--papel);
+  }
+  .atalhos a:hover { border-color: var(--azul-claro); }
+  .publico {
+    display: grid; gap: 2rem; grid-template-columns: 1fr;
+    background: var(--grafite); border: 1px solid var(--linha); border-radius: 20px;
+    padding: 1.6rem 1.25rem; margin: 0 0 1.5rem; scroll-margin-top: 1rem;
+  }
+  .etiqueta {
+    display: inline-block; margin: 0 0 .9rem; padding: .3rem .7rem;
+    background: var(--marca-texto); color: var(--tinta); border-radius: 10px;
+    font: 700 .8rem/1.2 "Space Mono", monospace; letter-spacing: .04em; text-transform: uppercase;
+  }
+  .publico-texto > p:not(.etiqueta) { margin: 0 0 1.3rem; color: var(--cinza-claro); max-width: 34rem; }
+  .passos { list-style: none; margin: 0; padding: 0; display: grid; gap: .8rem; }
+  .passos li {
+    position: relative; display: grid; gap: .1rem; padding: 0 0 0 3rem; min-height: 2.4rem;
+  }
+  .passos li:not(:last-child)::after {
+    content: ""; position: absolute; left: 1.05rem; top: 2.3rem; bottom: -.8rem; width: 2px; background: var(--linha);
+  }
+  .passos .num {
+    position: absolute; left: 0; top: 0; width: 2.1rem; height: 2.1rem; display: grid; place-items: center;
+    border-radius: 10px; background: var(--eletrico); color: var(--papel);
+    font: 700 .95rem/1 "Space Mono", monospace;
+  }
+  .passos b { font-weight: 600; }
+  .passos li > span:not(.num) { color: var(--cinza-claro); font-size: .97rem; line-height: 1.5; }
+
+  /* Celular com conversa simulada */
+  .celular {
+    align-self: start; justify-self: center; width: 100%; max-width: 21rem;
+    background: var(--zap-fundo); border: 1px solid #2a3942; border-radius: 22px; overflow: hidden;
+  }
+  .cel-topo {
+    display: flex; align-items: center; gap: .65rem; padding: .7rem .9rem; background: var(--zap);
+    font-size: .95rem; line-height: 1.2;
+  }
+  .cel-topo small { display: block; color: var(--cinza-claro); font-size: .75rem; }
+  .cel-topo b { font-weight: 600; }
+  .avatar {
+    width: 2rem; height: 2rem; border-radius: 50%; display: grid; place-items: center; flex: none;
+    background: var(--eletrico); font: 700 .9rem/1 Poppins, sans-serif;
+  }
+  .selo {
+    margin-left: auto; padding: .2rem .5rem; border-radius: 8px; background: var(--marca-texto); color: var(--tinta);
+    font: 700 .68rem/1.2 "Space Mono", monospace; text-transform: uppercase; letter-spacing: .04em;
+  }
+  .cel-corpo { display: grid; gap: .5rem; padding: 1rem .8rem 1.2rem; }
+  .msg { margin: 0; padding: .5rem .7rem; border-radius: 12px; max-width: 84%; font-size: .9rem; line-height: 1.4; }
+  .msg.atendente { background: #202c33; justify-self: start; border-top-left-radius: 4px; }
+  .msg.cliente { background: #005C4B; justify-self: end; border-top-right-radius: 4px; }
+  .celular.pequeno { max-width: none; }
+  .celular.pequeno .msg { font-size: .85rem; }
+
+  /* Como um projeto funciona por dentro: cards em sequência, no estilo dos Stories */
+  .cards {
+    list-style: none; margin: 0; padding: 0 0 1rem;
+    display: flex; gap: 1rem; overflow-x: auto; scroll-snap-type: x mandatory;
+    margin-inline: -1.25rem; padding-inline: 1.25rem; scroll-padding-inline: 1.25rem;
+    -webkit-overflow-scrolling: touch;
+  }
+  .card {
+    flex: 0 0 min(84vw, 21rem); scroll-snap-align: start;
+    display: flex; flex-direction: column; gap: .5rem;
+    background: var(--grafite); border: 1px solid var(--linha); border-radius: 22px; padding: 1.4rem 1.2rem 1.1rem;
+  }
+  .card:nth-child(even) { background: #161718; }
+  .card-topo { display: flex; justify-content: space-between; align-items: center; margin-bottom: .5rem; }
+  .rotulo {
+    padding: .3rem .7rem; background: var(--marca-texto); color: var(--tinta); border-radius: 10px;
+    font: 700 .8rem/1.2 "Space Mono", monospace; letter-spacing: .04em;
+  }
+  .passo { font: 700 .85rem/1 "Space Mono", monospace; color: var(--cinza-claro); }
+  .card h3 { font-size: 1.45rem; }
+  .card > p { margin: 0 0 .6rem; color: var(--cinza-claro); font-size: .97rem; line-height: 1.5; }
+  .visual { position: relative; margin-top: auto; border-radius: 14px; overflow: hidden; }
+  .rodape-card { margin: .5rem 0 0; font: 700 .78rem/1 "Space Mono", monospace; color: #6f7480; }
+  .canvas { display: block; width: 100%; height: auto; }
+  .selo-claro {
+    position: absolute; right: .6rem; top: .6rem; padding: .2rem .5rem; border-radius: 8px;
+    background: var(--marca-texto); color: var(--tinta); font: 700 .66rem/1.2 "Space Mono", monospace;
+    text-transform: uppercase; letter-spacing: .04em;
+  }
+  .selo-claro.sobre { top: auto; bottom: .6rem; }
+  .so-celular { display: inline; }
+
+  .papel-notas { background: var(--papel); color: var(--tinta); padding: 2.2rem 1rem 1.1rem; border-radius: 14px; font-size: .92rem; }
+  .papel-notas ul { margin: .6rem 0 0; padding: 0; list-style: none; display: grid; gap: .5rem; }
+  .papel-notas li { padding-bottom: .4rem; border-bottom: 1px dashed #b9bfcf; }
+  .papel-notas i { font-style: normal; font-weight: 600; color: var(--eletrico); }
+  .desenho {
+    background: var(--papel); color: var(--tinta); padding: 2.4rem 1rem 1rem; border-radius: 14px;
+    display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; font-size: .88rem;
+  }
+  .desenho i { font-style: normal; color: #6b7595; }
+  .cx { padding: .45rem .7rem; border: 2px solid var(--tinta); border-radius: 10px; font-weight: 600; background: #fff; }
+  .cx.az { border-color: var(--eletrico); color: var(--eletrico); }
+  .cx.am { background: var(--marca-texto); }
+  .cx.baixo { flex-basis: 100%; margin-top: .5rem; border-style: dashed; font-weight: 400; text-align: center; }
+  .teste-ok { display: flex; flex-wrap: wrap; gap: .4rem; padding: 0 .8rem 1rem; }
+  .teste-ok span { padding: .2rem .55rem; border-radius: 8px; background: #123d33; color: #6fe3c0; font-size: .78rem; font-weight: 600; }
+  .painel { background: var(--papel); color: var(--tinta); padding: 2.2rem 1rem 1rem; border-radius: 14px; }
+  .painel-linha { display: flex; justify-content: space-between; align-items: center; padding: .7rem 0; border-bottom: 1px solid #d5d9e5; font-weight: 600; font-size: .92rem; }
+  .chave { width: 2.6rem; height: 1.5rem; border-radius: 999px; background: #1ba672; position: relative; flex: none; }
+  .chave i { position: absolute; right: .2rem; top: .2rem; width: 1.1rem; height: 1.1rem; border-radius: 50%; background: #fff; }
+  .painel-rodape { margin: .8rem 0 0; font-size: .85rem; color: #4a5063; }
+
+  .sobre-texto p { max-width: 38rem; margin: 0 0 1rem; }
+
+  .contato { border-top: 1px solid var(--linha); padding: 3rem 0 1rem; margin-bottom: 0; }
   .contato p { margin: 0; }
   .contato .acoes { margin-top: 1.25rem; }
-  .contato .email { margin-top: 1.25rem; color: var(--cinza-claro); }
-  .contato .email a { color: var(--papel); }
 
   footer { padding: 2rem 0 3rem; color: var(--cinza-claro); font-size: .875rem; }
   footer p { margin: .25rem 0; }
 
   @media (min-width: 46rem) {
     .topo { padding: 6.5rem 0 4.5rem; grid-template-columns: auto minmax(0, 24rem); justify-content: space-between; gap: 3rem; }
-    .documentos { padding: 2.5rem; }
-    .sobre { grid-template-columns: 5fr 6fr; gap: 4rem; }
+    .publico { grid-template-columns: minmax(0, 1fr) 21rem; gap: 3rem; padding: 2.4rem; align-items: center; }
+    .publico:nth-of-type(even) { grid-template-columns: 21rem minmax(0, 1fr); }
+    .publico:nth-of-type(even) .celular { order: -1; }
+    .cards { display: grid; grid-template-columns: repeat(2, 1fr); overflow: visible; margin-inline: 0; padding-inline: 0; gap: 1.25rem; }
+    .card { flex: none; }
+    .card:nth-child(3) { grid-column: span 2; }
+    .so-celular { display: none; }
   }
 
-  @media (min-width: 60rem) {
-    .docs { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  /* Um único movimento: o ".ai" é grifado com o marca-texto ao abrir a página */
   @media (prefers-reduced-motion: no-preference) {
     .assinatura .ai { animation: grifo .9s cubic-bezier(.2, .7, .2, 1) .25s both; }
-    @keyframes grifo {
-      from { clip-path: inset(0 100% 0 0); }
-      to { clip-path: inset(0 0 0 0); }
-    }
+    @keyframes grifo { from { clip-path: inset(0 100% 0 0); } to { clip-path: inset(0 0 0 0); } }
   }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
 </style>
 </head>
 <body>
@@ -167,74 +242,157 @@
       <span class="ai">.ai</span>
     </h1>
     <div class="apresentacao">
-    <p class="resumo">Automações com IA para negócios: agentes que atendem, agendam e respondem pelo WhatsApp, fluxos no n8n e sites.</p>
-    <div class="acoes">
-      <a class="botao principal" href="https://wa.me/5518996786028">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
-        Falar no WhatsApp
-      </a>
-      <a class="botao secundario" href="https://www.instagram.com/gabrielbeitum.ai/">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        @gabrielbeitum.ai
-      </a>
+      <p class="resumo">Automações com IA para negócios. Atendentes virtuais no WhatsApp e fluxos que tiram o trabalho repetitivo da equipe.</p>
+      <div class="acoes">
+      <a class="botao principal" href="https://wa.me/5518996786028"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>Conversar no WhatsApp</a>
+      <a class="botao secundario" href="https://www.instagram.com/gabrielbeitum.ai/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@gabrielbeitum.ai</a>
     </div>
     </div>
   </header>
 
-  <section class="documentos" aria-labelledby="titulo-docs">
-    <h2 id="titulo-docs">Documentos do app Gabrielbeitum.ai</h2>
-    <p>O app Gabrielbeitum.ai responde os comentários e as mensagens do @gabrielbeitum.ai no Instagram. Aqui você vê como ele trata os seus dados, como pedir para apagá-los e as regras de uso.</p>
-    <div class="docs">
-      <a class="doc" href="privacidade.html">
-        <h3>Política de Privacidade</h3>
-        <p>Quais dados o app usa, para quê, com quem compartilha e por quanto tempo guarda.</p>
-        <span class="url">gabrielbeitum.github.io/<wbr>privacidade.html</span>
-      </a>
-      <a class="doc" href="exclusao-de-dados.html">
-        <h3>Exclusão de dados</h3>
-        <p>Como pedir para apagar os seus dados, por DM ou por e-mail. Atendemos em até 15 dias.</p>
-        <span class="url">gabrielbeitum.github.io/<wbr>exclusao-de-dados.html</span>
-      </a>
-      <a class="doc" href="termos-de-uso.html">
-        <h3>Termos de Uso</h3>
-        <p>As regras para comentar e mandar mensagens ao perfil e o que as respostas automáticas valem.</p>
-        <span class="url">gabrielbeitum.github.io/<wbr>termos-de-uso.html</span>
-      </a>
+  <section class="faco" id="o-que-eu-faco" aria-labelledby="t-faco">
+    <h2 id="t-faco">O que eu faço</h2>
+    <p class="intro">Crio automações para negócios. Cada uma tira da equipe uma tarefa que se repete, para sobrar tempo para o que precisa de uma pessoa.</p>
+    <ul class="servicos">
+      <li><b>Atendente virtual no WhatsApp</b><span>Responde, agenda e avisa a equipe, com a API oficial da Meta ou a Evolution API, conforme o tamanho do projeto.</span></li>
+      <li><b>Fluxos no n8n</b><span>Ligam o WhatsApp, a agenda, as planilhas e os sistemas que a equipe já usa.</span></li>
+      <li><b>Agentes de IA</b><span>Com Claude e GPT, treinados com as regras e as informações do seu negócio.</span></li>
+      <li><b>Hospedagem e manutenção</b><span>O n8n no meu servidor, com mensalidade, ou no servidor do cliente.</span></li>
+      <li><b>Sites</b><span>Landing pages e sites institucionais, quando o projeto pede.</span></li>
+    </ul>
+  </section>
+
+  <section class="automacoes" id="automacoes" aria-labelledby="t-auto">
+    <h2 id="t-auto">Como cada automação funciona</h2>
+    <p class="intro">Um exemplo por tipo de negócio: o que chega, o que a IA faz e o que a equipe recebe. As conversas abaixo são simulações.</p>
+    <nav class="atalhos" aria-label="Públicos">
+      <a href="#clinicas">Clínicas e consultórios</a><a href="#escolas">Escolas e cursos</a><a href="#lojas">Lojas e delivery</a><a href="#servicos">Serviços e escritórios</a>
+    </nav>
+    
+    <article class="publico" id="clinicas">
+      <div class="publico-texto">
+        <p class="etiqueta">Clínicas e consultórios</p>
+        <h3>O paciente esquece a consulta e o horário fica vazio.</h3>
+        <p>O WhatsApp da clínica confirma na véspera, remarca quem não pode ir e avisa a recepção. A equipe liga menos e encaixa outra pessoa a tempo.</p>
+        <ol class="passos"><li><span class="num">1</span><b>Chega a mensagem</b><span>O paciente responde ao lembrete ou pede um horário.</span></li><li><span class="num">2</span><b>A IA entende</b><span>Identifica se é confirmação, remarcação ou cancelamento.</span></li><li><span class="num">3</span><b>Consulta a agenda</b><span>Vê os horários livres na agenda da clínica.</span></li><li><span class="num">4</span><b>Responde e avisa</b><span>Confirma ou remarca e registra para a recepção.</span></li></ol>
+      </div>
+      <div class="celular" role="img" aria-label="Simulação de conversa no WhatsApp: Clínicas e consultórios">
+          <div class="cel-topo"><span class="avatar">C</span><span><b>Clínica</b><small>atendente virtual</small></span><span class="selo">Simulação</span></div>
+          <div class="cel-corpo"><p class="msg atendente">Olá, Ana! Sua consulta é amanhã, às 14h. Você confirma?</p><p class="msg cliente">Preciso remarcar.</p><p class="msg atendente">Tenho quinta, às 10h, ou sexta, às 15h. Qual prefere?</p><p class="msg cliente">Quinta.</p><p class="msg atendente">Remarcado para quinta, às 10h. A recepção já foi avisada.</p></div>
+        </div>
+    </article>
+    <article class="publico" id="escolas">
+      <div class="publico-texto">
+        <p class="etiqueta">Escolas e cursos</p>
+        <h3>Quem pergunta à noite e só tem resposta no dia seguinte costuma desistir.</h3>
+        <p>O WhatsApp responde na hora, apresenta as turmas e marca a aula experimental. A equipe recebe a conversa pronta.</p>
+        <ol class="passos"><li><span class="num">1</span><b>Chega a pergunta</b><span>A qualquer hora, inclusive fora do expediente.</span></li><li><span class="num">2</span><b>A IA responde</b><span>Informa turmas, horários e como funciona.</span></li><li><span class="num">3</span><b>Marca a aula experimental</b><span>Pede nome e turno e reserva o horário.</span></li><li><span class="num">4</span><b>Avisa a equipe</b><span>Entrega o resumo da conversa para o atendimento.</span></li></ol>
+      </div>
+      <div class="celular" role="img" aria-label="Simulação de conversa no WhatsApp: Escolas e cursos">
+          <div class="cel-topo"><span class="avatar">E</span><span><b>Escola</b><small>atendente virtual</small></span><span class="selo">Simulação</span></div>
+          <div class="cel-corpo"><p class="msg cliente">Vocês têm turma de inglês à noite?</p><p class="msg atendente">Temos, de segunda a quinta, às 19h. Quer fazer uma aula experimental?</p><p class="msg cliente">Quero, na terça.</p><p class="msg atendente">Reservado para terça, às 19h. Qual é o seu nome?</p><p class="msg cliente">Marcos.</p><p class="msg atendente">Combinado, Marcos. A equipe vai te receber na terça.</p></div>
+        </div>
+    </article>
+    <article class="publico" id="lojas">
+      <div class="publico-texto">
+        <p class="etiqueta">Lojas e delivery</p>
+        <h3>O dia todo chega a mesma pergunta: taxa, horário, se tem o produto.</h3>
+        <p>O WhatsApp responde essas perguntas sozinho e passa para a loja só quem vai fazer o pedido. A equipe para de repetir a mesma resposta.</p>
+        <ol class="passos"><li><span class="num">1</span><b>Chega a pergunta</b><span>Taxa de entrega, horário, produto em estoque.</span></li><li><span class="num">2</span><b>A IA responde</b><span>Usa as informações da loja, sempre atualizadas.</span></li><li><span class="num">3</span><b>Identifica o pedido</b><span>Quando a pessoa decide comprar, reúne os dados.</span></li><li><span class="num">4</span><b>Passa para a equipe</b><span>Envia o pedido resumido para quem atende.</span></li></ol>
+      </div>
+      <div class="celular" role="img" aria-label="Simulação de conversa no WhatsApp: Lojas e delivery">
+          <div class="cel-topo"><span class="avatar">L</span><span><b>Loja</b><small>atendente virtual</small></span><span class="selo">Simulação</span></div>
+          <div class="cel-corpo"><p class="msg cliente">Vocês entregam no Centro? Até que horas?</p><p class="msg atendente">Entregamos no Centro, todos os dias, até as 21h.</p><p class="msg cliente">Tem o tamanho M da camiseta preta?</p><p class="msg atendente">Tem sim. Quer fazer o pedido?</p><p class="msg cliente">Quero.</p><p class="msg atendente">Anotei. Passei o pedido para a equipe, que confirma o pagamento com você.</p></div>
+        </div>
+    </article>
+    <article class="publico" id="servicos">
+      <div class="publico-texto">
+        <p class="etiqueta">Serviços e escritórios</p>
+        <h3>O contato novo espera a resposta e, muitas vezes, procura outro escritório.</h3>
+        <p>O WhatsApp responde na hora, entende o caso e marca a conversa na agenda. Ninguém esfria, e o escritório entra com tudo encaminhado.</p>
+        <ol class="passos"><li><span class="num">1</span><b>Chega o contato</b><span>Alguém pede atendimento ou orçamento.</span></li><li><span class="num">2</span><b>A IA entende o caso</b><span>Faz as perguntas certas e registra as respostas.</span></li><li><span class="num">3</span><b>Marca na agenda</b><span>Oferece horários livres e confirma.</span></li><li><span class="num">4</span><b>Avisa o responsável</b><span>Envia o resumo do caso antes da conversa.</span></li></ol>
+      </div>
+      <div class="celular" role="img" aria-label="Simulação de conversa no WhatsApp: Serviços e escritórios">
+          <div class="cel-topo"><span class="avatar">E</span><span><b>Escritório</b><small>atendente virtual</small></span><span class="selo">Simulação</span></div>
+          <div class="cel-corpo"><p class="msg cliente">Preciso abrir uma empresa. Vocês fazem isso?</p><p class="msg atendente">Fazemos. É uma empresa nova ou você já tem CNPJ?</p><p class="msg cliente">Nova.</p><p class="msg atendente">Posso marcar uma conversa com o responsável. Prefere quarta, às 10h, ou quinta, às 16h?</p><p class="msg cliente">Quarta.</p><p class="msg atendente">Marcado para quarta, às 10h. Enviei o resumo para ele.</p></div>
+        </div>
+    </article>
+  </section>
+
+  <section class="dentro" id="por-dentro" aria-labelledby="t-dentro">
+    <h2 id="t-dentro">Como um projeto funciona por dentro</h2>
+    <p class="intro">Da conversa inicial ao fluxo no ar, em cinco passos. <span class="so-celular">Deslize para ver o próximo.</span></p>
+    <ol class="cards" tabindex="0" aria-label="Cinco passos de um projeto">
+      <li class="card">
+        <div class="card-topo"><span class="rotulo">ENTENDER</span><span class="passo">1/5</span></div>
+        <h3>Primeiro, a rotina do negócio.</h3>
+        <p>Converso com quem atende e levanto o que se repete: quem pergunta, o que pergunta e quanto tempo isso toma da equipe.</p>
+        <div class="visual"><div class="papel-notas"><b>Rotina de atendimento</b><ul>
+            <li>Quem escreve? <i>Pacientes</i></li>
+            <li>O que pergunta? <i>Horário, remarcação</i></li>
+            <li>Quanto toma da equipe? <i>Boa parte do dia</i></li>
+            <li>O que precisa de pessoa? <i>Casos especiais</i></li></ul><span class="selo-claro">Exemplo</span></div></div>
+        <p class="rodape-card">@gabrielbeitum.ai</p>
+      </li>
+      <li class="card">
+        <div class="card-topo"><span class="rotulo">DESENHAR</span><span class="passo">2/5</span></div>
+        <h3>Depois, o desenho do fluxo.</h3>
+        <p>Antes de montar, desenho o caminho da conversa: o que a IA responde sozinha, o que vai para a agenda e quando chama uma pessoa.</p>
+        <div class="visual"><div class="desenho">
+            <span class="cx">Mensagem</span><i>→</i><span class="cx az">IA entende</span>
+            <i>→</i><span class="cx am">Agenda</span><i>→</i><span class="cx">Resposta</span>
+            <span class="cx baixo">Se for caso especial: avisa a equipe</span></div></div>
+        <p class="rodape-card">@gabrielbeitum.ai</p>
+      </li>
+      <li class="card">
+        <div class="card-topo"><span class="rotulo">MONTAR</span><span class="passo">3/5</span></div>
+        <h3>Monto no n8n, com a IA.</h3>
+        <p>O fluxo é construído no n8n, ligado ao WhatsApp, à agenda e às ferramentas que a equipe já usa. A IA recebe as regras e as informações do negócio.</p>
+        <div class="visual"><svg viewBox="0 0 560 330" class="canvas" role="img" aria-label="Exemplo de fluxo no n8n: mensagem, IA, agenda e aviso"><rect width="560" height="330" rx="14" fill="#161923"/><defs><pattern id="gr" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#2a3042"/></pattern></defs><rect width="560" height="330" rx="14" fill="url(#gr)"/><path d="M170 70 C187.5 70 187.5 70 205 70" fill="none" stroke="#6b7595" stroke-width="2"/><circle cx="205" cy="70" r="4" fill="#6b7595"/><path d="M355 70 C372.5 70 372.5 70 390 70" fill="none" stroke="#6b7595" stroke-width="2"/><circle cx="390" cy="70" r="4" fill="#6b7595"/><path d="M465 98 C465.0 98 465.0 140 465 140" fill="none" stroke="#6b7595" stroke-width="2"/><circle cx="465" cy="140" r="4" fill="#6b7595"/><path d="M390 190 C372.5 190 372.5 190 355 190" fill="none" stroke="#6b7595" stroke-width="2"/><circle cx="355" cy="190" r="4" fill="#6b7595"/><path d="M205 190 C187.5 190 187.5 190 170 190" fill="none" stroke="#6b7595" stroke-width="2"/><circle cx="170" cy="190" r="4" fill="#6b7595"/><g><rect x="20" y="42" width="150" height="56" rx="10" fill="#232938" stroke="#3a4260"/><rect x="20" y="42" width="6" height="56" rx="3" fill="#25D366"/><text x="40" y="66" fill="#F4F6FA" font-size="14" font-weight="600" font-family="Inter,sans-serif">WhatsApp</text><text x="40" y="85" fill="#A3A8B8" font-size="11.5" font-family="Inter,sans-serif">mensagem recebida</text></g><g><rect x="205" y="42" width="150" height="56" rx="10" fill="#232938" stroke="#3a4260"/><rect x="205" y="42" width="6" height="56" rx="3" fill="#3D57F0"/><text x="225" y="66" fill="#F4F6FA" font-size="14" font-weight="600" font-family="Inter,sans-serif">Agente de IA</text><text x="225" y="85" fill="#A3A8B8" font-size="11.5" font-family="Inter,sans-serif">entende o pedido</text></g><g><rect x="390" y="42" width="150" height="56" rx="10" fill="#232938" stroke="#3a4260"/><rect x="390" y="42" width="6" height="56" rx="3" fill="#FFD84D"/><text x="410" y="66" fill="#F4F6FA" font-size="14" font-weight="600" font-family="Inter,sans-serif">Agenda</text><text x="410" y="85" fill="#A3A8B8" font-size="11.5" font-family="Inter,sans-serif">consulta horários</text></g><g><rect x="390" y="162" width="150" height="56" rx="10" fill="#232938" stroke="#3a4260"/><rect x="390" y="162" width="6" height="56" rx="3" fill="#25D366"/><text x="410" y="186" fill="#F4F6FA" font-size="14" font-weight="600" font-family="Inter,sans-serif">Responde</text><text x="410" y="205" fill="#A3A8B8" font-size="11.5" font-family="Inter,sans-serif">WhatsApp, ao cliente</text></g><g><rect x="205" y="162" width="150" height="56" rx="10" fill="#232938" stroke="#3a4260"/><rect x="205" y="162" width="6" height="56" rx="3" fill="#8FA2FF"/><text x="225" y="186" fill="#F4F6FA" font-size="14" font-weight="600" font-family="Inter,sans-serif">Registro</text><text x="225" y="205" fill="#A3A8B8" font-size="11.5" font-family="Inter,sans-serif">planilha da equipe</text></g><g><rect x="20" y="162" width="150" height="56" rx="10" fill="#232938" stroke="#3a4260"/><rect x="20" y="162" width="6" height="56" rx="3" fill="#FFD84D"/><text x="40" y="186" fill="#F4F6FA" font-size="14" font-weight="600" font-family="Inter,sans-serif">Aviso</text><text x="40" y="205" fill="#A3A8B8" font-size="11.5" font-family="Inter,sans-serif">equipe é avisada</text></g></svg><span class="selo-claro sobre">Exemplo de fluxo no n8n</span></div>
+        <p class="rodape-card">@gabrielbeitum.ai</p>
+      </li>
+      <li class="card">
+        <div class="card-topo"><span class="rotulo">TESTAR</span><span class="passo">4/5</span></div>
+        <h3>Testo antes de ligar.</h3>
+        <p>Simulo as perguntas mais comuns e os casos difíceis. Onde a resposta sai errada, ajusto as regras até ficar como o negócio fala.</p>
+        <div class="visual"><div class="celular pequeno" role="img" aria-label="Simulação de teste do atendente"><div class="cel-topo"><span class="avatar">T</span><span><b>Teste</b><small>antes de ir ao ar</small></span><span class="selo">Simulação</span></div>
+            <div class="cel-corpo"><p class="msg cliente">Quero cancelar minha consulta.</p><p class="msg atendente">Posso remarcar para outro dia, se preferir. Se quiser cancelar, aviso a recepção.</p><p class="msg cliente">Cancelar.</p><p class="msg atendente">Certo. Avisei a recepção.</p></div>
+            <div class="teste-ok"><span>✓ Remarcar</span><span>✓ Cancelar</span><span>✓ Fora do horário</span></div></div></div>
+        <p class="rodape-card">@gabrielbeitum.ai</p>
+      </li>
+      <li class="card">
+        <div class="card-topo"><span class="rotulo">NO AR</span><span class="passo">5/5</span></div>
+        <h3>Por fim, colocar no ar.</h3>
+        <p>Liga o fluxo, acompanho os primeiros dias e deixo tudo explicado. Se algo mudar no negócio, o fluxo é pausado, ajustado e ligado de novo.</p>
+        <div class="visual"><div class="painel"><div class="painel-linha"><span>Atendimento do WhatsApp</span><span class="chave"><i></i></span></div>
+            <div class="painel-linha"><span>Lembretes de consulta</span><span class="chave"><i></i></span></div>
+            <div class="painel-linha"><span>Aviso à equipe</span><span class="chave"><i></i></span></div>
+            <p class="painel-rodape">Ativo. Dá para pausar com um clique.</p><span class="selo-claro">Exemplo</span></div></div>
+        <p class="rodape-card">@gabrielbeitum.ai</p>
+      </li>
+    </ol>
+  </section>
+
+  <section class="sobre" id="quem-sou-eu" aria-labelledby="t-sobre">
+    <h2 id="t-sobre">Quem sou eu</h2>
+    <div class="sobre-texto">
+      <p>Sou Gabriel Marcello Beitum, de Quatá (SP). Crio automações com IA para negócios: atendentes virtuais, fluxos que ligam as ferramentas da equipe e sites quando o projeto pede.</p>
+      <p>No Instagram @gabrielbeitum.ai, conto as novidades do Claude e de outras IAs e mostro como essas ferramentas funcionam, na prática, no dia a dia de um negócio.</p>
     </div>
   </section>
 
-  <section class="sobre">
-    <div>
-      <h2>Quem sou eu</h2>
-      <p>Sou Gabriel Marcello Beitum, de Quatá (SP). Crio automações para negócios: atendentes virtuais com IA, fluxos que ligam as ferramentas que a equipe já usa e sites quando o projeto pede.</p>
-      <p>No Instagram @gabrielbeitum.ai, conto as novidades do Claude e de outras IAs, sem enrolação, e mostro como essas ferramentas funcionam no dia a dia de um negócio.</p>
-      <p class="apoio">Atendo pequenos negócios locais, como clínicas, lojas, restaurantes, salões e imobiliárias, e equipes comerciais e de atendimento de empresas médias.</p>
-    </div>
-    <div>
-      <h2>O que eu faço</h2>
-      <ul class="servicos">
-        <li><b>Agentes de IA</b><span>Atendentes virtuais e assistentes internos com Claude e GPT, ligados aos canais e sistemas do negócio.</span></li>
-        <li><b>Automações no n8n</b><span>Fluxos que integram ferramentas, planilhas e sistemas e tiram o trabalho repetitivo da equipe.</span></li>
-        <li><b>Atendimento via WhatsApp</b><span>Com a API oficial da Meta ou a Evolution API, conforme o tamanho do projeto.</span></li>
-        <li><b>Hospedagem e manutenção</b><span>O n8n no meu servidor, com mensalidade, ou configurado no servidor do cliente.</span></li>
-        <li><b>Sites</b><span>Landing pages e sites institucionais.</span></li>
-      </ul>
-    </div>
-  </section>
-
-  <section class="contato" aria-labelledby="titulo-contato">
-    <h2 id="titulo-contato">Vamos conversar sobre o seu negócio?</h2>
+  <section class="contato" aria-labelledby="t-contato">
+    <h2 id="t-contato">Quer ver como ficaria no seu negócio?</h2>
     <p class="apoio">Conte o que toma tempo da sua equipe hoje, e eu digo o que dá para automatizar.</p>
     <div class="acoes">
-      <a class="botao principal" href="https://wa.me/5518996786028">Chamar no WhatsApp</a>
-      <a class="botao secundario" href="https://linktr.ee/GabrielBeitum">Todos os links</a>
+      <a class="botao principal" href="https://wa.me/5518996786028"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>Conversar no WhatsApp</a>
+      <a class="botao secundario" href="https://www.instagram.com/gabrielbeitum.ai/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>@gabrielbeitum.ai</a>
     </div>
-    <p class="email">Ou escreva para <a href="mailto:gabrielbeitum944.work@gmail.com">gabrielbeitum944.work@gmail.com</a></p>
   </section>
 
   <footer>
     <p>69.541.013 GABRIEL MARCELLO BEITUM (MEI), CNPJ 69.541.013/0001-74, Quatá/SP</p>
-    <p><a href="privacidade.html">Política de Privacidade</a>, <a href="exclusao-de-dados.html">Exclusão de dados</a> e <a href="termos-de-uso.html">Termos de Uso</a></p>
+    <p>Documentos do app Gabrielbeitum.ai: <a href="privacidade.html">Política de Privacidade</a>, <a href="exclusao-de-dados.html">Exclusão de dados</a> e <a href="termos-de-uso.html">Termos de Uso</a></p>
   </footer>
 
 </div>
