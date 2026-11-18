@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Gabriel Marcello Beitum · gabrielbeitum.ai</title>
-<meta name="description" content="Automações com IA para negócios: agentes que atendem pelo WhatsApp, fluxos no n8n e sites. Documentos do app Gabrielbeitum.ai.">
-<meta property="og:title" content="gabrielbeitum.ai">
-<meta property="og:description" content="Automações com IA para negócios: agentes que atendem pelo WhatsApp, fluxos no n8n e sites.">
+<meta name="description" content="Automações com IA para negócios: atendimento no WhatsApp, agenda, retorno de contatos e relatórios. Veja como cada uma funciona, passo a passo.">
+<meta property="og:title" content="Gabriel Marcello Beitum · gabrielbeitum.ai">
+<meta property="og:description" content="Automações com IA para negócios: atendimento no WhatsApp, agenda, retorno de contatos e relatórios. Veja como cada uma funciona, passo a passo.">
 <meta property="og:image" content="https://gabrielbeitum.github.io/img/icone.png">
 <meta property="og:url" content="https://gabrielbeitum.github.io/">
 <meta name="theme-color" content="#14161F">
@@ -14,229 +14,120 @@
 <link rel="apple-touch-icon" href="img/icone-180.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --tinta: #14161F;
-    --grafite: #1E2230;
-    --papel: #F4F6FA;
-    --eletrico: #3D57F0;
-    --marca-texto: #FFD84D;
-    --azul-claro: #8FA2FF;
-    --cinza-claro: #A3A8B8;
-    --linha: #2C3244;
-  }
-  * { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; }
-  body {
-    margin: 0;
-    color: var(--papel);
-    background:
-      radial-gradient(56rem 36rem at 100% 0, rgba(61, 87, 240, .26), rgba(61, 87, 240, 0) 70%) no-repeat,
-      var(--tinta);
-    font: 400 1.0625rem/1.65 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
-  }
-  a { color: inherit; }
-  a:focus-visible {
-    outline: 3px solid var(--marca-texto);
-    outline-offset: 3px;
-  }
-  .pagina { max-width: 64rem; margin: 0 auto; padding: 0 1.25rem; }
-
-  /* Topo: o nome em três linhas, como o ícone do app */
-  .topo { padding: 4.5rem 0 3.5rem; display: grid; gap: 2rem; }
-  .assinatura {
-    margin: 0;
-    font: 700 clamp(3.4rem, 15vw, 8.5rem)/.92 Poppins, sans-serif;
-    letter-spacing: -.035em;
-  }
-  .assinatura span { display: block; }
-  .assinatura .ai {
-    font-family: "Space Mono", monospace;
-    font-size: .78em;
-    letter-spacing: -.02em;
-    color: var(--marca-texto);
-    margin: .12em 0 0 -.08em;
-  }
-  .resumo {
-    max-width: 34rem;
-    margin: 0;
-    font-size: clamp(1.15rem, 2.6vw, 1.4rem);
-    line-height: 1.5;
-  }
-  .acoes { display: flex; flex-wrap: wrap; gap: .75rem; margin-top: 2rem; }
-  .apresentacao { align-self: end; }
-  .botao {
-    display: inline-flex; align-items: center; gap: .55rem;
-    padding: .85rem 1.3rem;
-    border-radius: 999px;
-    font-weight: 600; text-decoration: none;
-    border: 2px solid var(--eletrico);
-  }
-  .botao.principal { background: var(--eletrico); color: var(--papel); }
-  .botao.principal:hover { background: #3249d6; border-color: #3249d6; }
-  .botao.secundario { color: var(--papel); border-color: var(--linha); }
-  .botao.secundario:hover { border-color: var(--azul-claro); }
-  .botao svg { width: 1.15rem; height: 1.15rem; flex: none; }
-
-  /* Documentos do app: os únicos blocos claros da página */
-  .documentos {
-    background: var(--grafite);
-    border: 1px solid var(--linha);
-    border-radius: 20px;
-    padding: 2rem 1.25rem;
-    margin: 0 0 4.5rem;
-  }
-  .documentos h2 { margin: 0 0 .5rem; }
-  .documentos > p { margin: 0 0 1.5rem; max-width: 40rem; color: var(--cinza-claro); }
-  .docs { display: grid; gap: 1rem; grid-template-columns: 1fr; }
-  .doc {
-    display: block;
-    padding: 1.5rem 1.4rem 1.35rem;
-    background: var(--papel);
-    color: var(--tinta);
-    border-radius: 14px;
-    text-decoration: none;
-    box-shadow: inset 0 -6px 0 var(--marca-texto);
-    transition: transform .15s ease, box-shadow .15s ease;
-  }
-  .doc:hover { transform: translateY(-2px); box-shadow: inset 0 -10px 0 var(--marca-texto); }
-  .doc h3 {
-    margin: 0 0 .35rem;
-    font: 700 clamp(1.35rem, 3.4vw, 1.7rem)/1.2 Poppins, sans-serif;
-    letter-spacing: -.01em;
-  }
-  .doc p { margin: 0 0 .9rem; color: #3A4050; }
-  .doc .url {
-    display: block;
-    font: 700 .82rem/1.4 "Space Mono", monospace;
-    color: var(--eletrico);
-    overflow-wrap: break-word;
-  }
-
-  /* Seções de texto */
-  h2 {
-    font: 700 clamp(1.6rem, 4vw, 2.2rem)/1.15 Poppins, sans-serif;
-    letter-spacing: -.02em;
-    margin: 0 0 1.1rem;
-  }
-  .sobre { display: grid; gap: 2.5rem; grid-template-columns: 1fr; margin: 0 0 4rem; }
-  .sobre p { max-width: 38rem; margin: 0 0 1rem; }
-  .apoio { color: var(--cinza-claro); }
-  .servicos { list-style: none; margin: 0; padding: 0; border-top: 1px solid var(--linha); }
-  .servicos li { padding: 1rem 0; border-bottom: 1px solid var(--linha); }
-  .servicos b { display: block; font-weight: 600; color: var(--azul-claro); margin-bottom: .15rem; }
-  .servicos span { color: var(--cinza-claro); }
-
-  .contato { border-top: 1px solid var(--linha); padding: 3rem 0 1rem; }
-  .contato p { margin: 0; }
-  .contato .acoes { margin-top: 1.25rem; }
-  .contato .email { margin-top: 1.25rem; color: var(--cinza-claro); }
-  .contato .email a { color: var(--papel); }
-
-  footer { padding: 2rem 0 3rem; color: var(--cinza-claro); font-size: .875rem; }
-  footer p { margin: .25rem 0; }
-
-  @media (min-width: 46rem) {
-    .topo { padding: 6.5rem 0 4.5rem; grid-template-columns: auto minmax(0, 24rem); justify-content: space-between; gap: 3rem; }
-    .documentos { padding: 2.5rem; }
-    .sobre { grid-template-columns: 5fr 6fr; gap: 4rem; }
-  }
-
-  @media (min-width: 60rem) {
-    .docs { grid-template-columns: repeat(3, 1fr); }
-  }
-
-  /* Um único movimento: o ".ai" é grifado com o marca-texto ao abrir a página */
-  @media (prefers-reduced-motion: no-preference) {
-    .assinatura .ai { animation: grifo .9s cubic-bezier(.2, .7, .2, 1) .25s both; }
-    @keyframes grifo {
-      from { clip-path: inset(0 100% 0 0); }
-      to { clip-path: inset(0 0 0 0); }
-    }
-  }
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700&family=Space+Mono:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/site.css">
+<script>document.documentElement.classList.add("js")</script>
 </head>
 <body>
-<div class="pagina">
+<a class="pular" href="#conteudo">Ir para o conteúdo</a>
+<header class="cabeca">
+  <div class="cabeca-in">
+    <a class="marca" href="index.html" aria-label="gabrielbeitum.ai, início"><span>gabriel</span><span>beitum</span><i>.ai</i></a>
+    <nav class="menu" id="menu" aria-label="Principal"><a href="index.html" aria-current="page">Início</a><a href="automacoes.html">Automações</a><a href="como-funciona.html">Como funciona</a><a href="sobre.html">Sobre</a><a class="botao principal pequeno menu-cta" href="https://wa.me/5518996786028"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span>Conversar no WhatsApp</span></a></nav>
+    <button class="burger" type="button" aria-label="Abrir o menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+  </div>
+</header>
+<main id="conteudo">
 
-  <header class="topo">
-    <h1 class="assinatura" aria-label="gabrielbeitum.ai">
-      <span>gabriel</span>
-      <span>beitum</span>
-      <span class="ai">.ai</span>
-    </h1>
-    <div class="apresentacao">
-    <p class="resumo">Automações com IA para negócios: agentes que atendem, agendam e respondem pelo WhatsApp, fluxos no n8n e sites.</p>
-    <div class="acoes">
-      <a class="botao principal" href="https://wa.me/5518996786028">
-        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>
-        Falar no WhatsApp
-      </a>
-      <a class="botao secundario" href="https://www.instagram.com/gabrielbeitum.ai/">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        @gabrielbeitum.ai
-      </a>
+<section class="hero">
+  <div class="pagina hero-grade">
+    <div class="hero-texto">
+      <p class="eyebrow">Automações com IA para negócios</p>
+      <h1>Menos tarefa repetida. <span class="grifo">Mais tempo</span> para o que importa.</h1>
+      <p class="lead">Crio automações que respondem clientes, agendam horários e avisam a equipe pelo WhatsApp. Cada uma assume uma tarefa que se repete e entrega o resultado pronto.</p>
+      <div class="acoes"><a class="botao principal " href="https://wa.me/5518996786028"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span>Conversar no WhatsApp</span></a><a class="botao secundario" href="automacoes.html"><span>Ver as automações</span><svg class="ic-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
     </div>
+    <div class="hero-visual" aria-hidden="false">
+      <div class="vidro">
+        <p class="vidro-rotulo">Exemplo de automação</p>
+        <div class="fluxo compacto" role="img" aria-label="Exemplo de fluxo: mensagem, IA, resposta ou equipe"><div class="etapa"><div class="no verde" style="--i:0"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/></svg><span class="no-t"><b>Chega a mensagem</b><small>pelo WhatsApp</small></span></div></div><div class="lig" style="--i:1"><i></i></div><div class="etapa"><div class="no azul" style="--i:1"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 4a3 3 0 0 0-3 3 3 3 0 0 0-2 5 3 3 0 0 0 2 5 3 3 0 0 0 6 1V4a3 3 0 0 0-3 0zM15 4a3 3 0 0 1 3 3 3 3 0 0 1 2 5 3 3 0 0 1-2 5 3 3 0 0 1-6 1"/></svg><span class="no-t"><b>A IA entende</b><small>e consulta a agenda</small></span></div></div><div class="lig" style="--i:2"><i></i></div><div class="etapa ramo" style="--n:2"><div class="no verde" style="--i:2"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg><span class="no-t"><b>Responde e agenda</b><small>na hora</small></span></div><div class="no amarelo" style="--i:3"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></svg><span class="no-t"><b>Chama a equipe</b><small>se precisar</small></span></div></div></div>
+      </div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <section class="documentos" aria-labelledby="titulo-docs">
-    <h2 id="titulo-docs">Documentos do app Gabrielbeitum.ai</h2>
-    <p>O app Gabrielbeitum.ai responde os comentários e as mensagens do @gabrielbeitum.ai no Instagram. Aqui você vê como ele trata os seus dados, como pedir para apagá-los e as regras de uso.</p>
-    <div class="docs">
-      <a class="doc" href="privacidade.html">
-        <h3>Política de Privacidade</h3>
-        <p>Quais dados o app usa, para quê, com quem compartilha e por quanto tempo guarda.</p>
-        <span class="url">gabrielbeitum.github.io/<wbr>privacidade.html</span>
-      </a>
-      <a class="doc" href="exclusao-de-dados.html">
-        <h3>Exclusão de dados</h3>
-        <p>Como pedir para apagar os seus dados, por DM ou por e-mail. Atendemos em até 15 dias.</p>
-        <span class="url">gabrielbeitum.github.io/<wbr>exclusao-de-dados.html</span>
-      </a>
-      <a class="doc" href="termos-de-uso.html">
-        <h3>Termos de Uso</h3>
-        <p>As regras para comentar e mandar mensagens ao perfil e o que as respostas automáticas valem.</p>
-        <span class="url">gabrielbeitum.github.io/<wbr>termos-de-uso.html</span>
-      </a>
+<section class="secao">
+  <div class="pagina">
+    <p class="eyebrow reveal">O que muda</p>
+    <h2 class="reveal">Eficiência no dia a dia, e custo sob controle.</h2>
+    <div class="trio">
+      <div class="trio-item reveal"><span class="ci"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span><h3>Tempo da equipe</h3><p>As perguntas que se repetem são respondidas sozinhas. A equipe cuida do que precisa de pessoa.</p></div>
+      <div class="trio-item reveal" style="--d:80ms"><span class="ci"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 17V11a6 6 0 0 1 12 0v6l2 2H4l2-2zM10 21a2 2 0 0 0 4 0"/></svg></span><h3>Atendimento fora do horário</h3><p>O WhatsApp responde à noite e no fim de semana, sem escala e sem hora extra.</p></div>
+      <div class="trio-item reveal" style="--d:160ms"><span class="ci"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l3 3 5-6"/></svg></span><h3>Nada se perde</h3><p>Todo contato é registrado, e a equipe sabe o que foi pedido, respondido e o que falta fazer.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="sobre">
-    <div>
-      <h2>Quem sou eu</h2>
-      <p>Sou Gabriel Marcello Beitum, de Quatá (SP). Crio automações para negócios: atendentes virtuais com IA, fluxos que ligam as ferramentas que a equipe já usa e sites quando o projeto pede.</p>
-      <p>No Instagram @gabrielbeitum.ai, conto as novidades do Claude e de outras IAs, sem enrolação, e mostro como essas ferramentas funcionam no dia a dia de um negócio.</p>
-      <p class="apoio">Atendo pequenos negócios locais, como clínicas, lojas, restaurantes, salões e imobiliárias, e equipes comerciais e de atendimento de empresas médias.</p>
+<section class="secao claro-fundo">
+  <div class="pagina">
+    <div class="sec-topo">
+      <div><p class="eyebrow reveal">Automações</p><h2 class="reveal">Exemplos de trabalhos, passo a passo.</h2></div>
+      <a class="link-seta reveal" href="automacoes.html">Ver todas <svg class="ic-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
     </div>
-    <div>
-      <h2>O que eu faço</h2>
-      <ul class="servicos">
-        <li><b>Agentes de IA</b><span>Atendentes virtuais e assistentes internos com Claude e GPT, ligados aos canais e sistemas do negócio.</span></li>
-        <li><b>Automações no n8n</b><span>Fluxos que integram ferramentas, planilhas e sistemas e tiram o trabalho repetitivo da equipe.</span></li>
-        <li><b>Atendimento via WhatsApp</b><span>Com a API oficial da Meta ou a Evolution API, conforme o tamanho do projeto.</span></li>
-        <li><b>Hospedagem e manutenção</b><span>O n8n no meu servidor, com mensalidade, ou configurado no servidor do cliente.</span></li>
-        <li><b>Sites</b><span>Landing pages e sites institucionais.</span></li>
-      </ul>
+    <div class="grade-auto"><a class="cartao-auto reveal" href="automacao-atendente-whatsapp.html">
+      <span class="ci"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 5h16v11H9l-5 4V5z"/></svg></span>
+      <h3>Atendente virtual no WhatsApp</h3>
+      <p>Responde o que se repete, a qualquer hora, e chama uma pessoa quando precisa.</p>
+      <span class="mais">Ver como funciona <svg class="ic-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a><a class="cartao-auto reveal" href="automacao-agendamento-e-lembretes.html">
+      <span class="ci"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="3"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span>
+      <h3>Agendamento e lembretes</h3>
+      <p>Marca o horário na agenda e lembra a pessoa na véspera. Menos falta, menos horário vazio.</p>
+      <span class="mais">Ver como funciona <svg class="ic-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a><a class="cartao-auto reveal" href="automacao-retorno-de-contatos.html">
+      <span class="ci"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7"/></svg></span>
+      <h3>Retorno de contatos</h3>
+      <p>Nenhum contato novo fica sem resposta. A automação responde, organiza e lembra de voltar.</p>
+      <span class="mais">Ver como funciona <svg class="ic-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a><a class="cartao-auto reveal" href="automacao-respostas-no-instagram.html">
+      <span class="ci"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20s-8-5-8-11a4.5 4.5 0 0 1 8-2.5A4.5 4.5 0 0 1 20 9c0 6-8 11-8 11z"/></svg></span>
+      <h3>Respostas no Instagram</h3>
+      <p>Responde comentários e mensagens do perfil com as regras do negócio e passa para uma pessoa o que é delicado.</p>
+      <span class="mais">Ver como funciona <svg class="ic-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a><a class="cartao-auto reveal" href="automacao-relatorios-automaticos.html">
+      <span class="ci"><svg class="ic" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+      <h3>Relatórios automáticos</h3>
+      <p>Os números do negócio chegam organizados, no dia e no horário combinados, sem montar planilha.</p>
+      <span class="mais">Ver como funciona <svg class="ic-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+    </a></div>
+  </div>
+</section>
+
+<section class="secao">
+  <div class="pagina">
+    <p class="eyebrow reveal">Como funciona por dentro</p>
+    <h2 class="reveal">Do primeiro contato ao fluxo no ar, em cinco passos.</h2>
+    <ol class="linha-passos"><li class="reveal" style="--d:0ms"><span class="pn">1</span><b>Entender</b><span>A rotina do negócio</span></li><li class="reveal" style="--d:70ms"><span class="pn">2</span><b>Desenhar</b><span>O caminho de cada conversa</span></li><li class="reveal" style="--d:140ms"><span class="pn">3</span><b>Montar</b><span>No n8n, com a IA</span></li><li class="reveal" style="--d:210ms"><span class="pn">4</span><b>Testar</b><span>Antes de ligar</span></li><li class="reveal" style="--d:280ms"><span class="pn">5</span><b>No ar</b><span>E acompanhar os primeiros dias</span></li></ol>
+    <a class="link-seta reveal" href="como-funciona.html">Ver o passo a passo completo <svg class="ic-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+  </div>
+</section>
+
+<section class="secao">
+  <div class="pagina sobre-mini">
+    <div class="reveal"><p class="eyebrow">Quem faz</p><h2>Gabriel Marcello Beitum.</h2></div>
+    <div class="reveal" style="--d:80ms"><p class="lead">Crio e mantenho cada automação, do desenho ao dia a dia. Você conversa direto comigo, sem intermediários.</p>
+    <a class="link-seta" href="sobre.html">Conhecer o trabalho <svg class="ic-seta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>
+  </div>
+</section>
+<section class="cta reveal"><div class="pagina"><div class="cta-caixa">
+      <h2>Quer ver como ficaria no seu negócio?</h2><p>Conte o que toma tempo da sua equipe hoje, e eu digo o que dá para automatizar.</p><div class="acoes"><a class="botao principal " href="https://wa.me/5518996786028"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span>Conversar no WhatsApp</span></a></div></div></div></section>
+
+</main>
+<footer class="rodape">
+  <div class="pagina">
+    <div class="rodape-topo">
+      <div>
+        <p class="rodape-titulo">Conte o que toma tempo da sua equipe.</p>
+        <p class="apoio">Eu digo o que dá para automatizar.</p>
+      </div>
+      <div class="acoes"><a class="botao principal " href="https://wa.me/5518996786028"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.3-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg><span>Conversar no WhatsApp</span></a><a class="botao secundario" href="https://www.instagram.com/gabrielbeitum.ai/"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg><span>@gabrielbeitum.ai</span></a></div>
     </div>
-  </section>
-
-  <section class="contato" aria-labelledby="titulo-contato">
-    <h2 id="titulo-contato">Vamos conversar sobre o seu negócio?</h2>
-    <p class="apoio">Conte o que toma tempo da sua equipe hoje, e eu digo o que dá para automatizar.</p>
-    <div class="acoes">
-      <a class="botao principal" href="https://wa.me/5518996786028">Chamar no WhatsApp</a>
-      <a class="botao secundario" href="https://linktr.ee/GabrielBeitum">Todos os links</a>
+    <div class="rodape-baixo">
+      <p>69.541.013 GABRIEL MARCELLO BEITUM (MEI), CNPJ 69.541.013/0001-74, Quatá/SP</p>
+      <p><a href="privacidade.html">Política de Privacidade</a> · <a href="exclusao-de-dados.html">Exclusão de dados</a> · <a href="termos-de-uso.html">Termos de Uso</a></p>
     </div>
-    <p class="email">Ou escreva para <a href="mailto:gabrielbeitum944.work@gmail.com">gabrielbeitum944.work@gmail.com</a></p>
-  </section>
-
-  <footer>
-    <p>69.541.013 GABRIEL MARCELLO BEITUM (MEI), CNPJ 69.541.013/0001-74, Quatá/SP</p>
-    <p><a href="privacidade.html">Política de Privacidade</a>, <a href="exclusao-de-dados.html">Exclusão de dados</a> e <a href="termos-de-uso.html">Termos de Uso</a></p>
-  </footer>
-
-</div>
+  </div>
+</footer>
+<script src="assets/site.js" defer></script>
 </body>
 </html>
