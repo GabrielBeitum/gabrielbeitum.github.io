@@ -462,3 +462,25 @@ body::before {
   .menu { background: rgba(20, 22, 31, .97); border-bottom: 1px solid var(--vidro-borda); }
   .menu > a:not(.botao) { border-radius: 0; border-bottom-color: rgba(255, 255, 255, .08); }
 }
+
+/* ==========================================================================
+   Ajuste de 19/11/2026 (2): fundo quase preto com padrão de placa de circuito
+   ========================================================================== */
+html { background: #0B0C10 linear-gradient(180deg, #0B0C10 0%, #101219 55%, #0C0D13 100%) fixed; }
+body { background: transparent; }
+/* Trilhas: linhas a 90° e 45° com nós nas junções, bem discretas */
+body::after {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22 viewBox=%220 0 240 240%22 fill=%22none%22 stroke=%22%23FFFFFF%22 stroke-opacity=%220.065%22 stroke-width=%221%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M0 60H70L100 90H160L190 60H240%22/%3E%3Cpath d=%22M120 0V30L140 50%22/%3E%3Cpath d=%22M120 240V200L100 180H50%22/%3E%3Cpath d=%22M240 140H200L180 160V210%22/%3E%3Cpath d=%22M0 140H20%22/%3E%3Cpath d=%22M200 0V20L220 40%22/%3E%3Cpath d=%22M200 240V225%22/%3E%3Cpath d=%22M30 100V120L45 135%22/%3E%3Cg fill=%22%23FFFFFF%22 fill-opacity=%220.065%22%3E%3Ccircle cx=%2270%22 cy=%2260%22 r=%221.6%22/%3E%3Ccircle cx=%22160%22 cy=%2290%22 r=%221.6%22/%3E%3Ccircle cx=%22190%22 cy=%2260%22 r=%221.6%22/%3E%3C/g%3E%3Ccircle cx=%22140%22 cy=%2250%22 r=%223%22/%3E%3Ccircle cx=%2250%22 cy=%22180%22 r=%223%22/%3E%3Ccircle cx=%22180%22 cy=%22210%22 r=%223%22/%3E%3Ccircle cx=%2220%22 cy=%22140%22 r=%223%22/%3E%3Ccircle cx=%22220%22 cy=%2240%22 r=%223%22/%3E%3Ccircle cx=%22200%22 cy=%22225%22 r=%222.2%22/%3E%3Ccircle cx=%2230%22 cy=%22100%22 r=%222.2%22/%3E%3Ccircle cx=%2245%22 cy=%22135%22 r=%223%22/%3E%3C/svg%3E"); background-size: 240px 240px;
+}
+/* Brilho leve em algumas trilhas, só perto das manchas de cor */
+html::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22 viewBox=%220 0 240 240%22 fill=%22none%22 stroke=%22%238FA2FF%22 stroke-opacity=%220.30%22 stroke-width=%221%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M0 60H70L100 90H160L190 60H240%22/%3E%3Cpath d=%22M120 0V30L140 50%22/%3E%3Cpath d=%22M120 240V200L100 180H50%22/%3E%3Cpath d=%22M240 140H200L180 160V210%22/%3E%3Cpath d=%22M0 140H20%22/%3E%3Cpath d=%22M200 0V20L220 40%22/%3E%3Cpath d=%22M200 240V225%22/%3E%3Cpath d=%22M30 100V120L45 135%22/%3E%3Cg fill=%22%238FA2FF%22 fill-opacity=%220.30%22%3E%3Ccircle cx=%2270%22 cy=%2260%22 r=%221.6%22/%3E%3Ccircle cx=%22160%22 cy=%2290%22 r=%221.6%22/%3E%3Ccircle cx=%22190%22 cy=%2260%22 r=%221.6%22/%3E%3C/g%3E%3Ccircle cx=%22140%22 cy=%2250%22 r=%223%22/%3E%3Ccircle cx=%2250%22 cy=%22180%22 r=%223%22/%3E%3Ccircle cx=%22180%22 cy=%22210%22 r=%223%22/%3E%3Ccircle cx=%2220%22 cy=%22140%22 r=%223%22/%3E%3Ccircle cx=%22220%22 cy=%2240%22 r=%223%22/%3E%3Ccircle cx=%22200%22 cy=%22225%22 r=%222.2%22/%3E%3Ccircle cx=%2230%22 cy=%22100%22 r=%222.2%22/%3E%3Ccircle cx=%2245%22 cy=%22135%22 r=%223%22/%3E%3C/svg%3E"); background-size: 240px 240px;
+  -webkit-mask-image: radial-gradient(34rem 24rem at 92% 0, #000, transparent 70%), radial-gradient(26rem 22rem at 0 24%, rgba(0,0,0,.8), transparent 70%), radial-gradient(28rem 22rem at 100% 96%, rgba(0,0,0,.8), transparent 70%);
+  mask-image: radial-gradient(34rem 24rem at 92% 0, #000, transparent 70%), radial-gradient(26rem 22rem at 0 24%, rgba(0,0,0,.8), transparent 70%), radial-gradient(28rem 22rem at 100% 96%, rgba(0,0,0,.8), transparent 70%);
+}
+.cabeca { background: rgba(11, 12, 16, .9); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .cabeca { background: rgba(11, 12, 16, .58); } }
+:root { --solido: rgba(24, 27, 38, .96); }
+@media (max-width: 53.99rem) { .menu { background: rgba(11, 12, 16, .97); } }
