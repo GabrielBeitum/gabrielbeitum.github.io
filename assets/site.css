@@ -484,3 +484,38 @@ html::before {
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .cabeca { background: rgba(11, 12, 16, .58); } }
 :root { --solido: rgba(24, 27, 38, .96); }
 @media (max-width: 53.99rem) { .menu { background: rgba(11, 12, 16, .97); } }
+
+/* ==========================================================================
+   Ajuste de 19/11/2026 (3): rodapé completo, em colunas
+   ========================================================================== */
+.rodape { padding: 3.5rem 0 2rem; background: rgba(11, 12, 16, .82); border-top: 1px solid rgba(255, 255, 255, .10); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .rodape { background: rgba(255, 255, 255, .03); -webkit-backdrop-filter: blur(18px) saturate(150%); backdrop-filter: blur(18px) saturate(150%); }
+}
+.rodape-colunas { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2.25rem 1.5rem; padding: 2.75rem 0 2.5rem; }
+.rod-marca { grid-column: 1 / -1; }
+.rod-col h2 { margin: 0 0 1rem; font: 700 .74rem/1.2 var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--amarelo); max-width: none; }
+.rod-col ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .7rem; }
+.rod-col li, .rod-col p { font-size: .95rem; line-height: 1.45; color: var(--cinza); }
+.rod-col a { color: #D3D8E4; text-decoration: none; transition: color .15s ease; }
+.rod-col a:hover { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+.rod-col a.rod-todas { color: var(--azul-claro); font-weight: 600; }
+.rod-col a.quebra { overflow-wrap: anywhere; }
+.rod-logo { display: inline-flex; align-items: center; gap: .75rem; font: 700 1.3rem/1 var(--titulo); letter-spacing: -.035em; color: var(--papel) !important; text-decoration: none !important; }
+.rod-logo img { width: 2.75rem; height: 2.75rem; border-radius: 6px; border: 1px solid var(--vidro-borda); }
+.rod-logo i { font: 700 1.02rem/1 var(--mono); font-style: normal; color: var(--amarelo); letter-spacing: -.02em; }
+.rod-marca p { margin: 1rem 0 1.25rem; max-width: 22rem; }
+.rod-icones { display: flex; gap: .6rem; }
+.rod-icones a { display: grid; place-items: center; width: 2.6rem; height: 2.6rem; border-radius: var(--raio-botao); border: 1px solid var(--vidro-borda); background: var(--vidro); color: var(--papel); box-shadow: inset 0 1px 0 rgba(255, 255, 255, .09); transition: border-color .2s ease, background-color .2s ease; }
+.rod-icones a:hover { border-color: rgba(143, 162, 255, .7); background: var(--vidro-forte); }
+.rod-icones svg { width: 1.2rem; height: 1.2rem; }
+.rodape-fim { margin: 0; padding-top: 1.5rem; border-top: 1px solid rgba(255, 255, 255, .08); color: var(--cinza-2); font-size: .82rem; line-height: 1.6; }
+@media (min-width: 44rem) { .rodape-colunas { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (min-width: 64rem) {
+  .rodape-colunas { grid-template-columns: 1.5fr 1.25fr .8fr 1.45fr 1fr; gap: 2.5rem; }
+  .rod-marca { grid-column: auto; }
+}
+@media (max-width: 43.99rem) {
+  .rod-col:nth-child(4), .rod-col:nth-child(5) { grid-column: 1 / -1; }
+  .rod-col:nth-child(5) ul { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; }
+}
