@@ -755,3 +755,7 @@ html::before {
 /* Ajuste de 19/11/2026 (16): card sem passos (início) volta a esticar o texto */
 .cartao-auto p:last-of-type { flex: 1; }
 .cartao-auto .mini-passos ~ .mais { margin-top: 1.25rem; }
+
+/* Ajuste de 19/11/2026 (17): início com 3 exemplos e o botão "Ver todas as automações" */
+.ver-todas { display: flex; justify-content: center; margin-top: 2.25rem; }
+.ver-todas .botao { padding: 1.05rem 1.75rem; font-size: 1.05rem; border-color: rgba(143, 162, 255, .5); }
