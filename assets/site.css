@@ -619,3 +619,32 @@ html::before {
 .selo-premio { display: inline-block; margin-bottom: .6rem; padding: .22rem .5rem; border-radius: 4px; background: var(--amarelo); color: var(--tinta); font: 700 .66rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
 .trab-premio .quem { color: var(--cinza); font-weight: 500; font-size: .9rem; }
 .trab-premio p:not(.quem) { max-width: 46rem; }
+
+/* ==========================================================================
+   Ajuste de 19/11/2026 (11): "Como funciona" em zigue-zague (sem carrossel)
+   ========================================================================== */
+.zig { display: grid; gap: 1.75rem; align-items: center; }
+.zig + .zig { margin-top: clamp(4rem, 11vw, 9rem); }
+.zig-quadro {
+  position: relative; display: grid; place-items: center; aspect-ratio: 4 / 3; padding: clamp(1rem, 3vw, 2.25rem);
+  border-radius: var(--raio); border: 1px solid var(--vidro-borda); background-color: var(--solido);
+  background-image: var(--vidro-brilho), radial-gradient(24rem 16rem at 100% 0, rgba(61, 87, 240, .30), rgba(61, 87, 240, 0) 70%);
+  box-shadow: var(--vidro-sombra);
+}
+.zig.inv .zig-quadro { background-image: var(--vidro-brilho), radial-gradient(24rem 16rem at 0 100%, rgba(140, 100, 255, .26), rgba(140, 100, 255, 0) 70%); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .zig-quadro { background-color: var(--vidro); -webkit-backdrop-filter: var(--vidro-filtro); backdrop-filter: var(--vidro-filtro); } }
+.zig-quadro > .vis { width: 100%; max-width: 31rem; }
+.zig-quadro .papel-v { font-size: 1rem; padding: 2.8rem 1.4rem 1.4rem; }
+.zig-quadro .cx { font-size: .95rem; padding: .55rem .85rem; }
+.zig-quadro .escuro-v .msg { font-size: .9rem; }
+.zig-quadro .escuro-v { background: rgba(8, 10, 16, .55); }
+.zig-num { display: flex; align-items: center; gap: .7rem; margin: 0 0 1.1rem; font: 700 .78rem/1.2 var(--mono); letter-spacing: .09em; text-transform: uppercase; color: var(--amarelo); }
+.zig-num span { display: inline-grid; place-items: center; width: 2rem; height: 2rem; border-radius: 6px; background: var(--amarelo); color: var(--tinta); font-size: .9rem; letter-spacing: 0; }
+.zig-txt h2 { font-size: clamp(1.9rem, 4.2vw, 3rem); line-height: 1.08; max-width: 14ch; }
+.zig-txt > p:last-child { margin: 1.25rem 0 0; max-width: 30rem; font-size: clamp(1.05rem, 1.6vw, 1.2rem); line-height: 1.6; color: #D3D8E4; }
+@media (max-width: 55.99rem) { .zig-quadro { aspect-ratio: auto; min-height: 16rem; } }
+@media (min-width: 56rem) {
+  .zig { grid-template-columns: 1fr 1fr; gap: clamp(3rem, 6vw, 6rem); }
+  .zig .zig-img { order: 2; }
+  .zig.inv .zig-img { order: 0; }
+}
