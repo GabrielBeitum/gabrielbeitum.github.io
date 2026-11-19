@@ -613,3 +613,9 @@ html::before {
 
 /* Ajuste de 19/11/2026 (9): prêmio junto dos trabalhos apresentados, dentro da grade */
 .formacao .premio { grid-column: 1 / -1; margin-bottom: 0; }
+
+/* Ajuste de 19/11/2026 (10): trabalho premiado dentro de "Trabalhos apresentados" */
+.trab-premio { padding: .1rem 0 1.5rem 1rem; margin-bottom: 1.5rem; border-left: 2px solid var(--amarelo); border-bottom: 1px solid rgba(255, 255, 255, .10); }
+.selo-premio { display: inline-block; margin-bottom: .6rem; padding: .22rem .5rem; border-radius: 4px; background: var(--amarelo); color: var(--tinta); font: 700 .66rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.trab-premio .quem { color: var(--cinza); font-weight: 500; font-size: .9rem; }
+.trab-premio p:not(.quem) { max-width: 46rem; }
