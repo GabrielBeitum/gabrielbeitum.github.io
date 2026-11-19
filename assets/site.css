@@ -593,3 +593,10 @@ html::before {
 .bloco h3 { font-size: 1.12rem; margin-bottom: .45rem; }
 .bloco h3::before { content: ""; display: inline-block; width: .5rem; height: .5rem; margin-right: .6rem; background: var(--amarelo); border-radius: 2px; vertical-align: .12em; }
 .bloco p { margin: 0; color: #D3D8E4; max-width: 38rem; }
+
+/* Ajuste de 19/11/2026 (7): card de prêmio na página Sobre */
+.premio { position: relative; overflow: hidden; margin-bottom: clamp(3rem, 7vw, 5rem); padding: clamp(1.5rem, 4vw, 2.75rem); border-radius: var(--raio); border: 1px solid rgba(255, 216, 77, .45); background-color: var(--solido); background-image: var(--vidro-brilho), radial-gradient(26rem 14rem at 100% 0, rgba(255, 216, 77, .12), rgba(255, 216, 77, 0) 70%); box-shadow: var(--vidro-sombra); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .premio { background-color: var(--vidro); -webkit-backdrop-filter: var(--vidro-filtro); backdrop-filter: var(--vidro-filtro); } }
+.premio .rot { display: inline-block; margin-bottom: 1.1rem; padding: .35rem .7rem; border-radius: 4px; background: var(--amarelo); color: var(--tinta); font: 700 .74rem/1.2 var(--mono); letter-spacing: .08em; text-transform: uppercase; }
+.premio h2 { font-size: clamp(1.45rem, 3vw, 2.1rem); max-width: 26ch; }
+.premio p { margin: 1rem 0 0; max-width: 46rem; color: #D3D8E4; }
