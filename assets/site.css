@@ -696,3 +696,42 @@ html::before {
 .precisa-nota { margin-top: 1.5rem; padding: 1.1rem 1.25rem; border-left: 2px solid var(--amarelo); background: rgba(255, 255, 255, .03); border-radius: 0 var(--raio) var(--raio) 0; }
 .precisa-nota p { margin: 0; color: #D3D8E4; } .precisa-nota p + p { margin-top: .25rem; color: var(--cinza); } .precisa-nota b { color: var(--papel); font-weight: 600; }
 @media (min-width: 52rem) { .grupos { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.25rem; } }
+
+/* ==========================================================================
+   Ajuste de 19/11/2026 (14): chamada final em vidro escuro, com a cor só como acento
+   ========================================================================== */
+.cta-caixa {
+  border: 0; border-radius: var(--raio); isolation: isolate;
+  background:
+    var(--vidro-brilho),
+    radial-gradient(30rem 20rem at 100% 0, rgba(61, 87, 240, .55), rgba(61, 87, 240, 0) 68%),
+    radial-gradient(26rem 18rem at 82% 110%, rgba(140, 100, 255, .45), rgba(140, 100, 255, 0) 70%),
+    radial-gradient(12rem 9rem at 100% 100%, rgba(255, 216, 77, .22), rgba(255, 216, 77, 0) 70%),
+    rgba(16, 18, 26, .94);
+  box-shadow: 0 30px 60px -34px rgba(0, 0, 0, .9), inset 0 1px 0 rgba(255, 255, 255, .10);
+}
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .cta-caixa { background:
+    var(--vidro-brilho),
+    radial-gradient(30rem 20rem at 100% 0, rgba(61, 87, 240, .55), rgba(61, 87, 240, 0) 68%),
+    radial-gradient(26rem 18rem at 82% 110%, rgba(140, 100, 255, .45), rgba(140, 100, 255, 0) 70%),
+    radial-gradient(12rem 9rem at 100% 100%, rgba(255, 216, 77, .22), rgba(255, 216, 77, 0) 70%),
+    rgba(16, 18, 26, .72);
+    -webkit-backdrop-filter: var(--vidro-filtro); backdrop-filter: var(--vidro-filtro); }
+}
+/* Borda fina em gradiente: azul, roxo e um toque de amarelo */
+.cta-caixa::before {
+  content: ""; position: absolute; inset: 0; padding: 1px; border-radius: inherit; pointer-events: none; z-index: 2;
+  background: linear-gradient(115deg, rgba(255, 255, 255, .16) 0%, rgba(255, 255, 255, .10) 35%, #3D57F0 62%, #8C64FF 84%, #FFD84D 100%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+/* Trilhas de circuito no lado direito */
+.cta-caixa::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none; z-index: -1;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22240%22 height=%22240%22 viewBox=%220 0 240 240%22 fill=%22none%22 stroke=%22%23A9B6FF%22 stroke-opacity=%220.55%22 stroke-width=%221.2%22 stroke-linecap=%22round%22 stroke-linejoin=%22round%22%3E%3Cpath d=%22M0 60H70L100 90H160L190 60H240%22/%3E%3Cpath d=%22M120 0V30L140 50%22/%3E%3Cpath d=%22M120 240V200L100 180H50%22/%3E%3Cpath d=%22M240 140H200L180 160V210%22/%3E%3Cpath d=%22M0 140H20%22/%3E%3Cpath d=%22M200 0V20L220 40%22/%3E%3Cpath d=%22M200 240V225%22/%3E%3Cpath d=%22M30 100V120L45 135%22/%3E%3Cg stroke=%22%23FFD84D%22 stroke-opacity=%220.9%22%3E%3Ccircle cx=%22140%22 cy=%2250%22 r=%223.2%22/%3E%3Ccircle cx=%22180%22 cy=%22210%22 r=%223.2%22/%3E%3Ccircle cx=%2245%22 cy=%22135%22 r=%223.2%22/%3E%3C/g%3E%3Ccircle cx=%2250%22 cy=%22180%22 r=%223.2%22/%3E%3Ccircle cx=%2220%22 cy=%22140%22 r=%223.2%22/%3E%3Ccircle cx=%22220%22 cy=%2240%22 r=%223.2%22/%3E%3Ccircle cx=%22200%22 cy=%22225%22 r=%222.4%22/%3E%3Ccircle cx=%2230%22 cy=%22100%22 r=%222.4%22/%3E%3Cg fill=%22%23A9B6FF%22 fill-opacity=%220.6%22 stroke=%22none%22%3E%3Ccircle cx=%2270%22 cy=%2260%22 r=%222%22/%3E%3Ccircle cx=%22160%22 cy=%2290%22 r=%222%22/%3E%3Ccircle cx=%22190%22 cy=%2260%22 r=%222%22/%3E%3C/g%3E%3C/svg%3E"); background-size: 220px 220px; background-position: right -20px top -30px;
+  -webkit-mask-image: linear-gradient(90deg, transparent 54%, rgba(0, 0, 0, .55) 72%, #000 100%); mask-image: linear-gradient(90deg, transparent 54%, rgba(0, 0, 0, .55) 72%, #000 100%);
+}
+.cta-caixa > * { position: relative; z-index: 1; }
+.cta-caixa p { color: #D9DDEA; }
+@media (max-width: 47.99rem) { .cta-caixa::after { -webkit-mask-image: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, .5) 100%); mask-image: linear-gradient(180deg, transparent 45%, rgba(0, 0, 0, .5) 100%); } }
