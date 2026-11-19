@@ -610,3 +610,6 @@ html::before {
   .trabalhos { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
   .trabalhos > div + div { padding-top: 0; border-top: 0; padding-left: 2.5rem; border-left: 1px solid rgba(255, 255, 255, .10); }
 }
+
+/* Ajuste de 19/11/2026 (9): prêmio junto dos trabalhos apresentados, dentro da grade */
+.formacao .premio { grid-column: 1 / -1; margin-bottom: 0; }
