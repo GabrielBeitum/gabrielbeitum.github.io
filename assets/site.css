@@ -519,3 +519,41 @@ html::before {
   .rod-col:nth-child(4), .rod-col:nth-child(5) { grid-column: 1 / -1; }
   .rod-col:nth-child(5) ul { display: flex; flex-wrap: wrap; gap: .7rem 1.5rem; }
 }
+
+/* ==========================================================================
+   Ajuste de 19/11/2026 (4): formação e cursos (Sobre) e páginas legais
+   ========================================================================== */
+.formacao { display: grid; gap: 1rem; margin-top: 2.75rem; }
+.curso { padding: 1.5rem; border-radius: var(--raio); border: 1px solid var(--vidro-borda); background-color: var(--solido); background-image: var(--vidro-brilho); box-shadow: var(--vidro-sombra); }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .curso { background-color: var(--vidro); -webkit-backdrop-filter: var(--vidro-filtro); backdrop-filter: var(--vidro-filtro); } }
+.curso .rot { display: inline-block; margin-bottom: 1rem; padding: .3rem .6rem; border-radius: 4px; border: 1px solid rgba(143, 162, 255, .35); background: rgba(61, 87, 240, .18); color: #C9D2FF; font: 700 .7rem/1.2 var(--mono); letter-spacing: .07em; text-transform: uppercase; }
+.curso h3 { font-size: 1.12rem; line-height: 1.3; }
+.curso .quem { margin: .45rem 0 0; color: var(--azul-claro); font-weight: 600; font-size: .95rem; }
+.curso p:not(.quem) { margin: .7rem 0 0; color: var(--cinza); font-size: .95rem; line-height: 1.5; }
+.curso.destaque { border-color: rgba(255, 216, 77, .4); }
+.curso.destaque .rot { background: var(--amarelo); border-color: var(--amarelo); color: var(--tinta); }
+.curso.destaque h3 { font-size: clamp(1.25rem, 2.4vw, 1.6rem); }
+@media (min-width: 40rem) { .formacao { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; } .curso.destaque { grid-column: 1 / -1; } }
+@media (min-width: 64rem) { .formacao { grid-template-columns: repeat(3, 1fr); } }
+
+.legal { padding: clamp(2.5rem, 6vw, 4.5rem) 0 clamp(3.5rem, 8vw, 6rem); }
+.legal .pagina { max-width: 54rem; }
+.legal-nav { display: flex; flex-wrap: wrap; gap: .5rem; margin-bottom: 1.5rem; }
+.legal-nav a { padding: .5rem .9rem; border-radius: var(--raio-botao); border: 1px solid var(--vidro-borda); background: var(--vidro); color: #D3D8E4; text-decoration: none; font-size: .93rem; font-weight: 500; }
+.legal-nav a:hover { border-color: rgba(143, 162, 255, .7); color: #fff; }
+.legal-nav a[aria-current="page"] { background: var(--amarelo); border-color: var(--amarelo); color: var(--tinta); font-weight: 600; }
+.legal article { padding: clamp(1.5rem, 4vw, 3rem); border-radius: var(--raio); border: 1px solid var(--vidro-borda); background-color: var(--solido); background-image: var(--vidro-brilho); box-shadow: var(--vidro-sombra); color: #DDE1EC; line-height: 1.7; }
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) { .legal article { background-color: rgba(18, 20, 28, .72); -webkit-backdrop-filter: var(--vidro-filtro); backdrop-filter: var(--vidro-filtro); } }
+.legal article h1 { font-size: clamp(1.7rem, 4vw, 2.4rem); line-height: 1.15; letter-spacing: -.025em; margin: 0 0 1rem; color: var(--papel); }
+.legal article h2 { font-size: 1.25rem; line-height: 1.3; letter-spacing: -.012em; margin: 2.25rem 0 .7rem; color: var(--papel); max-width: none; }
+.legal article h3 { margin: 1.5rem 0 .5rem; color: var(--papel); }
+.legal article p, .legal article li { overflow-wrap: anywhere; }
+.legal article ul, .legal article ol { padding-left: 1.3rem; margin: 0 0 1rem; }
+.legal article li { margin-bottom: .35rem; }
+.legal article a { color: var(--azul-claro); text-underline-offset: 3px; }
+.legal article strong { color: var(--papel); }
+.legal .tabela { overflow-x: auto; margin: 1rem 0; }
+.legal table { width: 100%; border-collapse: collapse; font-size: .95rem; }
+.legal th, .legal td { border: 1px solid rgba(255, 255, 255, .14); padding: .65rem .8rem; text-align: left; vertical-align: top; }
+.legal th { background: rgba(255, 255, 255, .06); color: var(--papel); font-weight: 600; }
+.legal .pendente { background: var(--amarelo); color: var(--tinta); padding: 0 .3rem; border-radius: 3px; }
