@@ -583,11 +583,13 @@ html::before {
   .quem .perfil { margin-top: 2rem; }
 }
 
-/* Ajuste de 19/11/2026 (6): card de resumo com rótulo e texto na mesma linha */
+/* Ajuste de 19/11/2026 (6): card de resumo (rótulo pequeno em cima, texto embaixo) e blocos de texto */
 .perfil-topo { gap: .9rem; }
 .fatos { list-style: none; padding: 0; margin: .4rem 0 1.4rem; }
-.fatos li { list-style: none; padding: .7rem 0; gap: .8rem; align-items: center; }
-.fatos span { display: block; font-size: .95rem; line-height: 1.45; color: #D3D8E4; }
-.fatos b { font: 600 .95rem/1.45 var(--texto); letter-spacing: 0; text-transform: none; color: var(--papel); }
+.fatos li { list-style: none; padding: .75rem 0; }
 .quem .perfil { margin-top: 0; }
 @media (min-width: 60rem) { .quem .perfil { margin-top: 1.4rem; } }
+.blocos { display: grid; gap: 1.5rem; margin-top: 2.25rem; padding-top: 2rem; border-top: 1px solid rgba(255, 255, 255, .10); }
+.bloco h3 { font-size: 1.12rem; margin-bottom: .45rem; }
+.bloco h3::before { content: ""; display: inline-block; width: .5rem; height: .5rem; margin-right: .6rem; background: var(--amarelo); border-radius: 2px; vertical-align: .12em; }
+.bloco p { margin: 0; color: #D3D8E4; max-width: 38rem; }
