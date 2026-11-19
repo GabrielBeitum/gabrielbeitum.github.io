@@ -648,3 +648,35 @@ html::before {
   .zig .zig-img { order: 2; }
   .zig.inv .zig-img { order: 0; }
 }
+
+/* ==========================================================================
+   Ajuste de 19/11/2026 (12): zigue-zague sem moldura, mais seguido e com a linha do caminho
+   ========================================================================== */
+.zig-lista { position: relative; --marca: 2.6rem; --trilho-x: calc(var(--marca) / 2); }
+.zig-trilho { position: absolute; top: 0; bottom: 0; left: var(--trilho-x); width: 2px; margin-left: -1px; background: repeating-linear-gradient(180deg, rgba(255, 255, 255, .20) 0 6px, transparent 6px 12px); border-radius: 2px; }
+.zig-trilho i { position: absolute; inset: 0; background: var(--amarelo); box-shadow: 0 0 14px rgba(255, 216, 77, .55); transform-origin: top; border-radius: 2px; }
+.zig { position: relative; display: grid; grid-template-columns: var(--marca) minmax(0, 1fr); grid-template-areas: "marca img" "marca txt"; column-gap: 1.1rem; row-gap: 1.25rem; align-items: start; padding-block: 1.25rem; }
+.zig + .zig { margin-top: clamp(1.25rem, 3vw, 2rem); }
+.zig-img { grid-area: img; } .zig-txt { grid-area: txt; } .zig-marca { grid-area: marca; }
+.zig .zig-img, .zig.inv .zig-img { order: 0; }
+.zig-marca { position: relative; z-index: 1; align-self: start; }
+.zig-marca span { display: grid; place-items: center; width: var(--marca); height: var(--marca); border-radius: 6px; background: var(--amarelo); color: var(--tinta); font: 700 1.05rem/1 var(--mono); box-shadow: 0 0 0 6px #0C0D12, 0 0 22px rgba(255, 216, 77, .45); transition: background-color .3s ease, color .3s ease, box-shadow .3s ease; }
+.js .zig-lista.anim .zig-marca:not(.ativo) span { background: #1B1E2A; color: var(--cinza); box-shadow: 0 0 0 6px #0C0D12, inset 0 0 0 1px rgba(255, 255, 255, .18); }
+.zig-num { margin: 0 0 .8rem; }
+/* Imagem solta, sem moldura */
+.zig-quadro, .zig.inv .zig-quadro { display: block; aspect-ratio: auto; min-height: 0; padding: 0; border: 0; border-radius: 0; background: none; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; overflow: visible; }
+.zig-quadro > .vis { max-width: 32rem; box-shadow: 0 30px 60px -34px rgba(0, 0, 0, .9); }
+.zig-quadro .escuro-v { border: 0; padding: 0; background: none; box-shadow: none; }
+.zig-quadro .escuro-v .fluxo { padding: 1.1rem; border-radius: var(--raio); background: #12141C; box-shadow: 0 30px 60px -34px rgba(0, 0, 0, .9); }
+.zig-quadro .escuro-v .selo.claro { position: absolute; right: .7rem; top: .7rem; margin: 0; }
+.zig-quadro .escuro-v .celular { box-shadow: 0 30px 60px -34px rgba(0, 0, 0, .9); }
+@media (min-width: 56rem) {
+  .zig-lista { --marca: 3rem; --trilho-x: 50%; }
+  .zig { grid-template-columns: minmax(0, 1fr) var(--marca) minmax(0, 1fr); grid-template-areas: "txt marca img"; column-gap: clamp(2rem, 4.5vw, 4.5rem); align-items: center; padding-block: clamp(1.25rem, 2.2vw, 2rem); }
+  .zig.inv { grid-template-areas: "img marca txt"; }
+  .zig-marca { align-self: center; }
+  .zig-quadro > .vis { margin-inline: auto; }
+  .zig:not(.inv) .zig-txt { justify-self: end; }
+  .zig-txt { max-width: 30rem; width: 100%; }
+}
+@media (prefers-reduced-motion: no-preference) { .js .zig-lista.anim .zig-trilho i { transform: scaleY(0); transition: transform .15s linear; } }

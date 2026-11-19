@@ -30,6 +30,31 @@
     alvos.forEach(function (el) { el.classList.add('visto'); });
   }
 
+  // Caminho das etapas (Como funciona): a linha se preenche conforme a rolagem
+  var lista = document.querySelector('.zig-lista');
+  var semMovimento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (lista && !semMovimento) {
+    var fio = lista.querySelector('.zig-trilho i');
+    var marcas = lista.querySelectorAll('.zig-marca');
+    lista.classList.add('anim');
+    var pedido = false;
+    var anda = function () {
+      pedido = false;
+      var r = lista.getBoundingClientRect();
+      var alvo = window.innerHeight * 0.62;
+      var p = Math.max(0, Math.min(1, (alvo - r.top) / r.height));
+      if (fio) fio.style.transform = 'scaleY(' + p.toFixed(4) + ')';
+      marcas.forEach(function (m) {
+        var mr = m.getBoundingClientRect();
+        m.classList.toggle('ativo', mr.top + mr.height / 2 <= alvo + 2);
+      });
+    };
+    var agenda = function () { if (!pedido) { pedido = true; window.requestAnimationFrame(anda); } };
+    window.addEventListener('scroll', agenda, { passive: true });
+    window.addEventListener('resize', agenda);
+    anda();
+  }
+
   // Sequência de cards (Como funciona)
   var trilho = document.querySelector('.stories');
   if (trilho) {
