@@ -751,3 +751,7 @@ html::before {
 .mp-n { display: grid; place-items: center; width: 1.45rem; height: 1.45rem; flex: none; border-radius: 4px; background: rgba(255, 216, 77, .14); border: 1px solid rgba(255, 216, 77, .45); color: var(--amarelo); font: 700 .7rem/1 var(--mono); }
 .mp-ic { width: 1rem; height: 1rem; color: var(--azul-claro); }
 .rodape-colunas .rod-col ul { gap: .6rem; }
+
+/* Ajuste de 19/11/2026 (16): card sem passos (início) volta a esticar o texto */
+.cartao-auto p:last-of-type { flex: 1; }
+.cartao-auto .mini-passos ~ .mais { margin-top: 1.25rem; }
